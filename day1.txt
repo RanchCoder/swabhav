@@ -2,3 +2,4 @@ hello, here I am learning g
 git is a tool.
 git is awesome
 git is used to manage source control.
+git pull will be called
