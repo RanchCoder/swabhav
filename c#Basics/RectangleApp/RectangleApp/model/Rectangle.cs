@@ -103,5 +103,15 @@ namespace RectangleApp.model
             }
             this.color = color;
         }
+
+        public override bool Equals(Object obj)
+        {
+            Rectangle rectangleToBeCompared = (Rectangle)obj;
+            if(rectangleToBeCompared.Height == this.Height && rectangleToBeCompared.Width == this.Width && rectangleToBeCompared.Color == this.Color)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

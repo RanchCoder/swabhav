@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Employee_App
 {
-    class Programmer : Employee
+    public class Programmer : Employee
     {
         private float bonus = 0.2f;
         public Programmer(int id, string name, float salary, DateTime date) : base(id, name, salary, date)

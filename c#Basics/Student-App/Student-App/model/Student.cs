@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Student_App.model
 {
-    class Student
+    public class Student
     {
         private int id;
         private string name;
@@ -26,17 +26,17 @@ namespace Student_App.model
             return this.creditPoint;
         }
 
-        public void setId(int id)
+        public void SetId(int id)
         {
             this.id = id;
         }
 
-        public void setName(string name)
+        public void SetName(string name)
         {
             this.name = name;
         }
         
-        public void setCreditPoint(float creditPoint)
+        public void SetCreditPoint(float creditPoint)
         {
             this.creditPoint = creditPoint;
         }

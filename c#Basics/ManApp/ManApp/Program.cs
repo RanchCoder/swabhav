@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ManApp
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -14,7 +14,16 @@ namespace ManApp
             Case2();
             Case3();
             Case4();
-            Console.ReadLine();
+            try {
+                Infant i = (Infant)new Man();
+                i.Plays();
+
+            }
+            catch (InvalidCastException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+                        Console.ReadLine();
         }
 
         public static void Case1()
@@ -64,7 +73,7 @@ namespace ManApp
             x = "Abc";
             Console.WriteLine(x);
             x = new Man();
-            Console.WriteLine(x.Plays());
+           // Console.WriteLine(x.Plays());
         }
 
         public static void AtParks(Man m)

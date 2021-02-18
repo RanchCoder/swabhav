@@ -31,6 +31,11 @@ namespace Employee_App_With_Manager_Analyst_Module
             Manager manager1 = new Manager(1, "vishal", 100000.5f, new DateTime(1996, 12, 23), "Manager");
             PrintEmployeeInfo(manager1,manager1.SalaryWithBonus());
 
+            if(manager1 is Employee)
+            {
+                Console.WriteLine("Yes it is an instance");
+            }
+
             Analyst analyst1 = new Analyst(2,"Tom",25000f,new DateTime(1990,1,12),"Analyst");
             PrintEmployeeInfo(analyst1,analyst1.SalaryWithBonus());
             Console.ReadLine();

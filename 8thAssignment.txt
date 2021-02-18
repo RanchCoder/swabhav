@@ -1,0 +1,52 @@
+Sonam Singh
+2:51 PM
+abstract class and interface 
+1. concrete and abstract / abstract 
+2. any access specifiers/ only public 
+3. more flexibility 
+4. when will we use it:- 
+
+
+IFlyable    and      INonflyable
+Sonam Singh
+3:27 PM
+homework assignment:-
+1. iEmotionable-app
+
+
+2.
+imovable-app
+
+imovable :- run (): void 
+
+car 
+truck
+bike 
+
+//array of object 
+main(){
+
+
+}
+
+public static void PrintInfo(???????????){
+//run 
+}
+
+
+3. file handling (dealing with text and csv file)
+
+101,abc,5.7
+102,xyz,6.0
+103, unspecified,7.8
+so when its blank write unspecfied der 
+
+
+4. serialization and de-serialization approach
+and try any simple example on it 
+
+5. exception handling (what ,why and how)
+6. hierarchy of exception handling (checked an
+7. types of exception supported 
+8. stack overflow error
+9. custom exception (try any simple example on it)

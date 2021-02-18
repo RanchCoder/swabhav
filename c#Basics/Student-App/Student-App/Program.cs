@@ -19,9 +19,9 @@ namespace Student_App
 
             //Case 2 setting values using setters
             Console.WriteLine("\n\nCase 2 : Ouput With using Setter and calling Getters");
-            s.setId(1);
-            s.setName("Vishal");
-            s.setCreditPoint(4.7f);
+            s.SetId(1);
+            s.SetName("Vishal");
+            s.SetCreditPoint(4.7f);
             Console.WriteLine($"Name of Student : {s.GetName()} , Id of Student : {s.GetId()} , Credit Point of Student : {s.GetCreditPoint()}");
 
             //Case 3 calling setters in Console.WriteLine()
