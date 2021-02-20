@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shop_With_Cart_App.model
 {
-    class Product
+    public class Product
     {
         private Guid _idOfProduct;
         private string _nameOfProduct;

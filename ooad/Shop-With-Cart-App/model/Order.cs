@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shop_With_Cart_App.model
 {
-    class Order
+    public class Order
     {
         private Guid idOfOrder;
         private DateTime dateOfOrder;
@@ -25,21 +25,24 @@ namespace Shop_With_Cart_App.model
         public void AddItem(LineItem item)
         {
             bool isAdded = false;
-            if(itemsListForOrder.Count > 0)
+            if (itemsListForOrder.Equals(null))
             {
-                foreach(LineItem itemProduct in ItemsListForOrder)
-                {
-                    if (itemProduct.Equals(item))
-                    {
-                        itemProduct.ItemQuantity += item.ItemQuantity;
-                        isAdded = true;
-                        return;
-                    }
-                }
+                itemsListForOrder.Add(item);
             }
             else
             {
-                itemsListForOrder.Add(item);
+                foreach(LineItem productItem in itemsListForOrder)
+                {
+                    if (productItem.GetProduct.Equals(item.GetProduct))
+                    {
+                        productItem.ItemQuantity += item.ItemQuantity;
+                        isAdded = true;
+                    }
+                }
+                if (!isAdded)
+                {
+                    itemsListForOrder.Add(item);
+                }
             }
             
         }
@@ -56,7 +59,7 @@ namespace Shop_With_Cart_App.model
 
         public override string ToString()
         {
-            return $"\n\n\t Date of Order : {DateOfOrder} || Order Items : {itemsListForOrder}";
+            return $"\n Date of Order : {DateOfOrder} ||\nOrder Items : {string.Join( ",", itemsListForOrder)} || \nFinal Cost : {FinalCost()}";
         }
 
     }

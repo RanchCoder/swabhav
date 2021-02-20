@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shop_With_Cart_App.model
 {
-    class LineItem
+    public class LineItem
     {
         private Guid _idOfLineItem;
         private int _itemQuantity;
@@ -21,7 +21,7 @@ namespace Shop_With_Cart_App.model
 
         public Guid IdOfLineItem { get => _idOfLineItem;  }
         public int ItemQuantity { get => _itemQuantity; set => _itemQuantity = value; }
-        internal Product Product { get => _product; }
+        internal Product GetProduct { get => _product; }
 
         public double CalculateItemCost()
         {
@@ -30,7 +30,7 @@ namespace Shop_With_Cart_App.model
 
         public override string ToString()
         {
-            return $"\n\n\t Id of Item : {IdOfLineItem} || Quantity : {ItemQuantity} || Product Details : {_product.ToString()}";
+            return $"\n\nId of Item : {IdOfLineItem} ||\nProduct Details : {_product.ToString()} ||\nQuantity : {ItemQuantity}";
         }
     }
 }

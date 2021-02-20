@@ -33,11 +33,13 @@ namespace Shop_With_Cart_App
             LineItem item1 = new LineItem(GenerateRandomId(),5,product_Instant_Noodles);
 
             LineItem item2 = new LineItem(GenerateRandomId(), 2, product_Cricket_Bat);
+            LineItem item3 = new LineItem(GenerateRandomId(), 4, product_Cricket_Bat);
 
-            
+
             Order orderOfCustomer1 = new Order(GenerateRandomId(),DateTime.Now);
             orderOfCustomer1.AddItem(item1);
             orderOfCustomer1.AddItem(item2);
+            orderOfCustomer1.AddItem(item3);
             Customer customer1 = new Customer(GenerateRandomId(),"vishal","mumbai");
 
             customer1.AddOrder(orderOfCustomer1);
