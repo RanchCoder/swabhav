@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B53A9704-6E8A-41E6-BA52-B16A534AD00B}</ProjectGuid>
+    <ProjectGuid>{5BDD101D-3667-4AE0-8D93-3449A09F646A}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>InvoiceApp</RootNamespace>
-    <AssemblyName>InvoiceApp</AssemblyName>
+    <RootNamespace>MatrixXOGameApp</RootNamespace>
+    <AssemblyName>MatrixXOGameApp</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,8 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Invoice.cs" />
-    <Compile Include="Model\InvoicePrinter.cs" />
+    <Compile Include="Model\BoxData.cs" />
+    <Compile Include="Model\MatrixXO.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

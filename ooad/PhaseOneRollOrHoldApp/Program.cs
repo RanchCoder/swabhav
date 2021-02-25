@@ -18,19 +18,18 @@ namespace PhaseOneRollOrHoldApp
             Console.ReadLine();
         }
 
-
         public static void PlayRollOrHold()
         {
             bool isPlaying = true , keepRolling = true;
-            string userChoice;
-            int turnScore = 0, totalScore = 0, randomRoll, counter = 1;
+            
+            int turnScore = 0, totalScore = 0, counter = 1;
 
             Console.WriteLine("To roll enter r/R  || To hold enter h/H");
             
             
             while (isPlaying)
             {
-                if (CheckTotalScore(totalScore))
+                if (CheckForTargetScore(ref totalScore,ref turnScore))
                 {
                     PrintResult(counter);
                     isPlaying = false;
@@ -39,53 +38,77 @@ namespace PhaseOneRollOrHoldApp
                 {
                     Console.WriteLine($"\n\nTURN {counter++}");
                     keepRolling = true;
-                    while (keepRolling)
-                    {
-                        if (turnScore >= 20 || totalScore >= 20)
-                        {
-                            keepRolling = false;
-                        }
-                        else
-                        {
-                            Console.Write("Roll or Hold  (r/h) : ");
-                            userChoice = Console.ReadLine();
-
-                            if (userChoice.ToLower().Equals(ROLL))
-                            {
-                                randomRoll = GenerateRandomNumber();
-                                if (randomRoll != 1)
-                                {
-                                    Console.WriteLine($"Die : {randomRoll}");
-                                    turnScore += randomRoll;
-                                }
-                                else
-                                {
-                                    GameReset(ref turnScore,ref totalScore);
-                                }
-                            }
-                            else if (userChoice.ToLower().Equals(HOLD))
-                            {
-                                 PrintTurnScore(ref turnScore,ref totalScore);
-                                 keepRolling = false;
-                            }
-                        }
-                    }    
+                    PlayATurn(ref keepRolling,ref turnScore,ref totalScore);    
                 }
             }
             Console.ReadLine();
         }
 
-        public static  bool CheckTotalScore(int totalScore)
+
+        public static void PlayATurn(ref bool keepRolling,ref int turnScore, ref int totalScore)
         {
-            return totalScore >= TARGET_SCORE;
+            string userChoice;
+            int randomRoll;
+            bool isUserChoosingToRoll, isUserChoosingToHold;
+            while (keepRolling)
+            {                
+                    Console.Write("Roll or Hold  (r/h) : ");
+                    userChoice = Console.ReadLine();                   
+                    isUserChoosingToRoll = userChoice.ToLower().Equals(ROLL);
+                    isUserChoosingToHold = userChoice.ToLower().Equals(HOLD);
+                    
+                if (isUserChoosingToRoll)
+                    {
+                        randomRoll = GenerateRandomNumber();
+                        if (randomRoll != 1)
+                        {
+                            
+                            Console.WriteLine($"Die : {randomRoll}");
+                            turnScore += randomRoll;
+                            if(CheckForTargetScore(ref totalScore,ref turnScore))
+                            {
+
+                                PrintTurnScore(ref turnScore, ref totalScore);
+                                keepRolling = false;
+                            }
+                        }
+                        else
+                        {
+                            GameReset(ref turnScore, ref totalScore);
+                        }
+                }
+                else if (isUserChoosingToHold)
+                {
+                        PrintTurnScore(ref turnScore, ref totalScore);
+                        keepRolling = false;
+                }
+                
+            }
         }
 
+        //BASIC UTILITY FUNCTIONS
+        public static int GenerateRandomNumber()
+        {
+
+            Random random = new Random();
+            return random.Next(1, 7);
+        }
+
+        public static void GameReset(ref int turnScore, ref int totalScore)
+        {
+            Console.WriteLine($"You have rolled 1 , your total score will be set to zero");
+            totalScore = 0;
+            turnScore = 0;
+
+        }
+
+        //PRINT UTILITY FUNCIIONS
         public static void PrintResult(int totalTurns)
         {
             Console.WriteLine($"Target score {TARGET_SCORE} has been reached\nTurns taken to reach : {totalTurns}");
 
         }
-
+       
         public static void PrintTurnScore(ref int turnScore,ref int totalScore)
         {
             Console.WriteLine($"Score For Turn : {turnScore}");
@@ -94,20 +117,16 @@ namespace PhaseOneRollOrHoldApp
             Console.WriteLine($"Total score : {totalScore}");
         }
 
-        public static void GameReset(ref int turnScore,ref int totalScore)
+       //TOTAL SCORE TRACKER UTILITY FUNCTION       
+        public static bool CheckForTargetScore(ref int totalScore,ref int turnScore)
         {
-            Console.WriteLine($"You have rolled 1 , your total score will be set to zero");
-            totalScore = 0;
-            turnScore = 0;
-
+            if(totalScore >=20 || turnScore >= 20)
+            {
+                return true;
+            }
+            return false;
         }
 
-        public static int GenerateRandomNumber()
-        {
-
-            Random random = new Random();
-            return random.Next(1, 7);
-        }
     }
 }
 

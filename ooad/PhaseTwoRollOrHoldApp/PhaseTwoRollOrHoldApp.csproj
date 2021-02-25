@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B53A9704-6E8A-41E6-BA52-B16A534AD00B}</ProjectGuid>
+    <ProjectGuid>{A1820F23-06B2-416F-B659-34554529E983}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>InvoiceApp</RootNamespace>
-    <AssemblyName>InvoiceApp</AssemblyName>
+    <RootNamespace>PhaseTwoRollOrHoldApp</RootNamespace>
+    <AssemblyName>PhaseTwoRollOrHoldApp</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,8 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Invoice.cs" />
-    <Compile Include="Model\InvoicePrinter.cs" />
+    <Compile Include="Model\RollOrHoldGame.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

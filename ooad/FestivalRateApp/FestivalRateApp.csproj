@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B53A9704-6E8A-41E6-BA52-B16A534AD00B}</ProjectGuid>
+    <ProjectGuid>{DD08CC14-F043-40F3-A223-D775DBC3E1CA}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>InvoiceApp</RootNamespace>
-    <AssemblyName>InvoiceApp</AssemblyName>
+    <RootNamespace>FestivalRateApp</RootNamespace>
+    <AssemblyName>FestivalRateApp</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,8 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Invoice.cs" />
-    <Compile Include="Model\InvoicePrinter.cs" />
+    <Compile Include="Model\DiwaliRate.cs" />
+    <Compile Include="Model\FestiveType.cs" />
+    <Compile Include="Model\FixedDeposit.cs" />
+    <Compile Include="Model\HoliRate.cs" />
+    <Compile Include="Model\IFestivalRate.cs" />
+    <Compile Include="Model\NormalRate.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
