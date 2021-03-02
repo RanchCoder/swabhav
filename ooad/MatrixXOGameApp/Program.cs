@@ -119,16 +119,76 @@ namespace MatrixXOGameApp
 
         public static void CheckAlignment(string[,] gamePad,int x,int y)
         {
+            bool finalResult;
             string result = MatrixXO.CheckAlignment(x, y);
             if (result.Equals(MatrixXO.CENTER))
             {
                 if (MatrixXO.IsMiddleAlignedBox(x, y))
                 {
-
+                    finalResult = CheckDiagonalAlignement(x,y,gamePad);
+                    if (finalResult)
+                    {
+                        Console.WriteLine($"Game should end because diagonal alignment is formed");
+                    }
                 }
             }
         }
 
+        public static bool CheckDiagonalAlignement(int x, int y,string[,] gamePad)
+        {
+            string value = gamePad[x, y];
+
+            if (MatrixXO.IsMiddleAlignedBox(x,y))
+            {
+                if((gamePad[0,0].Equals(value) && gamePad[2, 2].Equals(value) )|| (gamePad[0,2].Equals(value) && gamePad[2, 0].Equals(value)))
+                {
+                    return true;
+                }
+                return false;
+            }
+            if (MatrixXO.IsTopCornerAlignedBox(x, y))
+            {
+                if (MatrixXO.CheckAlignment(x, y).Equals(MatrixXO.LEFT))
+                {
+                    if ((gamePad[1, 1].Equals(value) && gamePad[2, 2].Equals(value)))
+                    {
+                        return true;
+                    }
+                }
+                else if(MatrixXO.CheckAlignment(x, y).Equals(MatrixXO.RIGHT))
+                {
+                    if ((gamePad[0, 2].Equals(value) && gamePad[2, 0].Equals(value)))
+                    {
+                        return true;
+                    }
+                }
+                
+                
+
+            }
+            if (MatrixXO.IsBottomCornerAlignedBox(x, y))
+            {
+                if (MatrixXO.CheckAlignment(x, y).Equals(MatrixXO.LEFT))
+                {
+                    if ((gamePad[2, 0].Equals(value) && gamePad[0, 2].Equals(value)))
+                    {
+                        return true;
+                    }
+                }
+                else if (MatrixXO.CheckAlignment(x, y).Equals(MatrixXO.RIGHT))
+                {
+                    if ((gamePad[2, 2].Equals(value) && gamePad[0, 0].Equals(value)))
+                    {
+                        return true;
+                    }
+                }
+
+
+
+            }
+            return false;
+
+        }
         public static bool IsBoxEmpty(ref int boxChoice,string[,] gamePad)
         {
             switch (boxChoice)
