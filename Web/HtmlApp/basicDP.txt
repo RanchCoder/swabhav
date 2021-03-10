@@ -1,0 +1,18 @@
+singleton
+builder 
+factory
+abstract factory
+
+-
+observer
+strategy
+template
+
+-structural
+adapter
+composite
+proxy
+
+how you can create the object? - creational
+how objects interact with each other? - observer
+what kind of structure you need to make? - structural

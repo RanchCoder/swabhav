@@ -1,0 +1,5 @@
+1. diff between html and js
+2. how can you your js program
+Sonam Singh
+6:46 PM
+document ,console,window

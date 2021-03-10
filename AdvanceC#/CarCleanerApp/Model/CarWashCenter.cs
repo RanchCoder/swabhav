@@ -13,7 +13,9 @@ namespace CarCleanerApp.Model
 
         public delegate void CarWashEventHandler(User user,Car car);
 
-        public event CarWashEventHandler CarWashEvent;
+        
+        public event Action<User,Car> CarWashEvent;
+        
         public CarWashCenter(string centerName)
         {
             _centerName = centerName;

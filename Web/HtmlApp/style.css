@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,300;1,400&display=swap');
+*{
+    margin:0;
+    padding:0;
+}
+
+:root{
+    --font-color:rgb(77, 41, 41);
+    --header-background:rgb(240, 239, 239);
+
+}
+
+body{
+    color:var(--font-color);
+    font-family: 'Lato', sans-serif;
+    
+}
+
+/* margin */
+.mt-1{
+    margin-top:5px;
+}
+.mt-2{
+    margin-top:10px;
+}
+.mt-3{
+    margin-top:15px;
+}
+.mt-4{
+    margin-top:20px;
+}
+
+.mb-1{
+    margin-bottom:5px;
+}
+.mb-2{
+    margin-bottom:10px;
+}
+.mb-3{
+    margin-bottom:15px;
+}
+.mb-4{
+    margin-bottom:20px;
+}
+
+.mb-10{
+    margin-bottom:70px;
+}
+
+.mx-10{
+   margin:0 10px;
+}
+
+
+
+a{
+    text-decoration:none;
+    color:#333;
+}
+
+/* header */
+header{
+    background:var(--header-background);
+    text-align:center;
+    padding:5px;
+    color:rgb(77, 69, 69);
+}
+
+
+
+/* section */
+.container{
+    width:1084px;
+    margin:50px auto;
+}
+
+table, th, td {
+    border: 1px solid black;
+    padding:5px;
+    border-collapse:collapse;
+  }
+
+
+.personal-data{
+
+    display:flex;
+    align-content: center;
+    justify-content:center;
+    
+}
+
+.personal-data .pd-image{
+    width:380px;
+    height:400px;
+    
+    background-image: url("images/resume.jpg");
+    background-size:380px 400px;
+    box-sizing:border-box;
+    border-radius:10px;
+
+}
+
+
+.personal-data .pd-text-info{
+    margin-left:5rem;
+}
+
+.text-info{
+    display:flex;
+    margin-bottom:40px;
+}
+
+.text-info-title{
+    width:20%;
+}
+
+.text-data-seperator{
+    width:10%;
+
+}
+.text-info-content{
+    width:70%;
+    line-height: 1.3rem;
+}
+
+.text-data-seperator>span>p{
+    font-size: 20px;
+}
+.text-info-content{
+  display:flex;
+  
+
+}
+
+.item-chip{
+   width:70px;
+   height:30px;
+   text-align:center;
+   padding:5px;
+   border-radius:4px;
+   box-sizing:border-box;
+   color:rgb(250, 243, 243);
+   background: crimson;
+}
+.text-info-content>span>h5{
+    font-size:1rem;
+}
+
+/* Section education and career */
+.educational-career-data{
+    text-align:center;
+
+}
