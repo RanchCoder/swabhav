@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkbox Group</title>
+</head>
+<body>
+    
+    <section>
+        Skills : 
+        <input type="checkbox" name="skills" id="c#" value="c#">
+        <label for="cd-c#">c#</label>
+        <input type="checkbox" name="skills" id="java" value="java"> 
+        <label for="cd-java">java</label>
+        <input type="checkbox" name="skills" id="html" value="html">
+        <label for="cd-html">html</label>
+        <input type="checkbox" name="skills" id="php" value="php">
+        <label for="cd-php">php</label>
+        <input type="checkbox" name="skills" id="css" value="css">
+        <label for="cd-css">css</label>
+    
+    
+    
+    </section>
+    <section>
+        cities : 
+        <input type="checkbox" name="city" id="mumbai" value="mb">
+        <label for="cd-mb">mumbai</label>
+        <input type="checkbox" name="city" id="chennai" value="ch">
+        <label for="cd-ch">chennai</label>
+        <input type="checkbox" name="city" id="delhi" value="de">
+        <label for="cd-de">delhi</label>
+        <input type="checkbox" name="city" id="bangalore" value="ban"> 
+        <label for="cd-ban">banglore</label>
+        <input type="checkbox" name="city" id="kochi" value="koc">
+        <label for="cd-koc">kochi</label>
+    
+    </section>
+     <input type="submit" id="skillsBtn" value="show skills">
+     <input type="submit" id="cityBtn" value="show cities">
+     <section id="result">
+
+     </section>
+</body>
+</html>
+<script src="../jquery.js"></script>
+<script>
+    $(function(){
+        $("#skillsBtn").click(function(){
+            getCheckedCheckBoxes('skills');
+        })
+        $("#cityBtn").click(function(){
+            getCheckedCheckBoxes('city');
+        })
+
+         var getCheckedCheckBoxes  = (checkboxGroup)=>{
+                var result = $('input[name="'+checkboxGroup+'"]:checked');
+                if(result.length > 0){
+                    let resultString = `${checkboxGroup} selected are : `;
+                    result.each(function(){
+                        console.log($(this));
+                        resultString += $(this).val() + " for " + $("label[for='cd-"+$(this).val()+"']").text() + " ";
+                    })
+                    $("#result").html(resultString);
+                }else{
+                    $('#result').html("no checkbox selected yet");
+                }
+         }
+    })
+</script>

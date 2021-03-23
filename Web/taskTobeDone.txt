@@ -1,0 +1,10 @@
+task 1:- create one button with name hidden and u will be having one para ....
+once you will click on button para will be hidden ---(callback) <button>Hide</button> 
+<p>This is a paragraph with little content.</p>
+
+Task 2:-
+puropse of IIFE 
+2) Different ways of using IIFE inside a function 
+3) how global namespace pollution can be handled using IIFE?? 
+4) wat is hoisting and wat's purpose of using it
+ 5) learn about properties as closure ...wat's purpose of it

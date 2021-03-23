@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closure | Second Example</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    function outer(){
+        let outerVariable = 100;
+        function firstInner(){
+            let innerVariable = 200;
+            function secondInner(){
+                
+                console.log(`outermost Variable : ${outerVariable} , innermost Variable : ${innerVariable}`);
+            }
+            return secondInner;
+        }
+        return firstInner;
+    }
+
+    let executeFirstInnerLayer = outer();
+    let executeInnerMostLayer = executeFirstInnerLayer();
+    executeInnerMostLayer();
+</script>

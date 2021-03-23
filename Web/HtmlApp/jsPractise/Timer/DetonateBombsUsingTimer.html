@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>End of the world</title>
+</head>
+<style>
+    #NewsAgency{
+        text-align:center;
+
+    }
+</style>
+<body>
+    <div id="NewsAgency">
+        <h1>NDTV NEWS</h1>
+        <h3 id="resultSection"></h3>
+        <h4 id="news"></h4>
+    </div>
+
+    
+</body>
+</html>
+
+<script>
+
+    let cities = ["mumbai","shangai","new york","london","mecca","vatican","himalayas","antartica","entire planet has been destroyed"];
+
+    let startTimer = setTimeout(startTheApocalypse,1000);
+    
+    var resultSection = document.getElementById("resultSection");
+
+    var israfeelDeclaration = document.getElementById("news");
+    
+    let intervalDestroyerTimer = setInterval(finalAnhillation,3000);
+
+    let CITY_TO_BE_DESTROYED = -1;
+
+    function startTheApocalypse(){
+        resultSection.innerHTML = "The end of time has begun...";        
+    }
+     
+    
+    function finalAnhillation(){
+        CITY_TO_BE_DESTROYED = CITY_TO_BE_DESTROYED+1; 
+
+        if(CITY_TO_BE_DESTROYED >= cities.length){
+            clearInterval(intervalDestroyerTimer);
+            resultSection.innerHTML = "Ya! lord of creation, only the angels are left";
+        }else{
+            israfeelDeclaration.innerHTML = `${cities[CITY_TO_BE_DESTROYED]} has been destroyed...`;
+            
+        }
+
+    }
+    
+    
+</script>

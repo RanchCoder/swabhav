@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>API | fetch student data</title>
+  </head>
+  <body>
+    <button id="submitBtn">Get student detail</button>
+    <section id="UpdateOrDelete">
+        <section class="container">
+            <div id="formContent">
+              <form action="#" method="post" id="updationForm">
+                <div class="form-content-element">
+                    <div class="input-control input-label">
+                      <label for="id"></label>
+                    </div>
+                    <div class="input-control input-box">
+                      <input type="hidden" name="id" id="idOfStudent" />
+                    </div>
+                  </div>
+                <div class="form-content-element">
+                  <div class="input-control input-label">
+                    <label for="rollNo">Roll No</label>
+                  </div>
+                  <div class="input-control input-box">
+                    <input type="text" name="rollNo" id="rollNo" />
+                  </div>
+                </div>
+                <div class="form-content-element">
+                  <div class="input-control input-label">
+                    <label for="name">Name</label>
+                  </div>
+                  <div class="input-control input-box">
+                    <input type="text" name="name" id="name" />
+                  </div>
+                </div>
+      
+                <div class="form-content-element">
+                  <div class="input-control input-label">
+                    <label for="age">Age</label>
+                  </div>
+                  <div class="input-control input-box">
+                    <input type="text" name="age" id="age" />
+                  </div>
+                </div>
+      
+                <div class="form-content-element">
+                  <div class="input-control input-label">
+                    <label for="email">Email</label>
+                  </div>
+                  <div class="input-control input-box">
+                    <input type="text" name="email" id="email" />
+                  </div>
+                </div>
+                <div class="form-content-element">
+                  <div class="input-control input-label">
+                    <label for="date">Date</label>
+                  </div>
+                  <div class="input-control input-box">
+                    <input type="text" name="date" id="date" />
+                  </div>
+                </div>
+      
+                <div class="form-content-element">
+                  <div class="input-control input-label">
+                    <label for="isMale">Is male </label>
+                  </div>
+                  <div  class="input-control input-box">
+                    <select id="isMale" name="isMale">
+                      <option value="true" class="dropDownItem">True</option>
+                      <option value="false" class="dropDownItem">false</option>
+                    </select>
+                  </div>
+                </div>
+                <input type="submit" id="updateOrDeleteBtn" value="submit" />
+              </form>
+            </div>
+          </section>
+    </section>
+    <section class="container" id="resultSection">
+      <table class="tbl-todo">
+        <thead>
+          <th>id</th>
+          <th>name</th>
+          <th>email</th>
+          <th>roll no</th>
+          <th>age</th>
+          <th>date</th>
+          <th>is Male</th>
+          <th>Update</th>
+          <th>Delete</th>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </section>
+  </body>
+</html>
+<script src="../jquery.js"></script>
+<script>
+    
+  $(function () {
+     $("#UpdateOrDelete").hide(); 
+    $("#submitBtn").on("click", () => {
+       fetchAllStudentData().then(function(studentData){
+           displayStudentData(studentData);
+       }).catch(function(errMsg){
+           console.log(errMsg);
+       })
+      //   console.log(studentData);
+      //   displayStudentData(studentData);
+    });
+
+    $(document).on("click", ".btn", function () {
+      let isUpdateOperation = $(this).hasClass("btnUpdate");
+      let idOfStudent = $(this).data("btn");
+      operationOnStudentRecord(isUpdateOperation, idOfStudent);
+    });
+  });
+
+  function operationOnStudentRecord(isUpdateOperation, idOfStudent) {
+    fetchStudentDataFromID(idOfStudent).then(function(studentData){
+        $("#UpdateOrDelete").show(1000);
+        $("html, body").animate({ scrollTop: "0" },100); 
+        fillDynamicFormData(studentData);
+        if(isUpdateOperation){
+              $("#updateOrDeleteBtn").css("background-color","rgb(12, 255, 88)");
+              $("#updateOrDeleteBtn").val("update");
+              
+        }else{
+            $("#updateOrDeleteBtn").css("background-color","rgb(255, 46, 106)");
+              $("#updateOrDeleteBtn").val("delete");
+        
+
+        }
+
+    }).catch(function(errMsg){
+        alert(errMsg);
+    });
+   
+  }
+
+  function fetchAllStudentData() {
+    return new Promise(function(resolve,reject){
+        $.get(
+      `http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students/`,
+      function (data, status) {
+        if (status === "success") {
+          resolve(data);
+        }else{
+            reject(new Error("cannot find data now."));
+        }
+      }
+    );
+
+    })  
+    
+  }
+
+  function fetchStudentDataFromID(idOfStudent) {
+    return new Promise(function(resolve,reject){
+        $.get(`http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students/${idOfStudent}`,function(data,status){
+            if(status==="success"){
+                resolve(data);
+            }else{
+                reject(new Error("data for such student does not exist"));
+            }
+        }
+    );
+
+    })  
+    return 
+  }
+
+  function displayStudentData(studentDataPromised) {
+    
+      studentDataPromised.map((student) => {
+        $("#tbody").append(`<tr>
+    <td>${student.id}</td>
+    <td>${student.name}</td>
+    <td>${student.email}</td>
+    <td>${student.rollNo}</td>
+    <td>${student.age}</td>
+    <td>${student.date}</td>
+    <td>${student.isMale}</td>
+    <td><button class="btnUpdate btn" data-btn=${student.id}>update</button></td>
+    <td><button class="btnDelete btn" data-btn=${student.id}>Delete</button></td>
+
+ </tr>`);
+      });
+    
+  }
+
+  function fillDynamicFormData(studentData){
+     $("#idOfStudent").val(studentData[0].id);
+    $("#rollNo").val(studentData[0].rollNo);
+      $("#name").val(studentData[0].name);
+      $("#email").val(studentData[0].email);
+      $("#age").val(studentData[0].age);
+      $("#date").val(studentData[0].date);
+      $("#isMale").val(`${studentData[0].isMale}`).change();
+  }
+
+  $("#updateOrDeleteBtn").click((event)=>{
+      event.preventDefault();
+      let btnValue = event.target.value;
+      let PUT = "PUT", DELETE = "DELETE";
+      let formDataInArrayFormat = $('#updationForm').serializeArray();
+      var jsonData = {};
+
+        $.each(formDataInArrayFormat,function(){
+            jsonData[this.name] = this.value || '';
+        })
+      if(btnValue === "update"){
+        sendUpdateOrDeleteRequest(jsonData,PUT);
+      }
+      if(btnValue === "delete"){
+        sendUpdateOrDeleteRequest(jsonData,DELETE);
+      }
+  })
+
+
+  function sendUpdateOrDeleteRequest(jsonDataOfStudent,METHOD_TYPE){
+    
+    
+    $.ajax({
+        url:`http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students/${jsonDataOfStudent.id}`,
+        data:jsonDataOfStudent,
+        type:METHOD_TYPE,
+        success:function(result){
+            if(METHOD_TYPE === "PUT"){
+                alert("data updated successfully " + result);
+            }else if(METHOD_TYPE === "DELETE"){
+                alert("data deleted successfully " + result);
+        
+            }
+        },  
+        error:function(jqXhr, textStatus, errorMessage){
+            alert("error : "+errorMessage);
+        }
+    })
+
+  }
+
+
+
+
+
+</script>

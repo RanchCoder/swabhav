@@ -1,0 +1,5 @@
+task1:- synchromous and asynchronous programming 
+task2:- setTimeout() and setInterval()
+task3:- event loop
+web worker
+task 4:- xhr

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../TodoList/style.css">
+    <title>API | fetch student data</title>
+</head>
+<body>
+    
+    <button id="submitBtn">Get student detail</button>
+    <section class="container" id="resultSection">
+       <table class="tbl-todo">
+           <thead>
+               <th>id</th>
+               <th>name</th>
+               <th>email</th>
+               <th>roll no</th>
+               <th>age</th>
+               <th>is Male</th>
+           </th>
+           <tbody id="tbody">
+               
+           </tbody>
+
+       </table>
+</section>
+</body>
+</html>
+<script src="../jquery.js"></script>
+<script>
+    $(function () {
+    $("#submitBtn").on("click", () => {
+        
+     $.get(`http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students/`,function (data,status) {
+        if (status === "success") {
+          
+            data.map((item)=>{
+                console.log(item);
+
+                $("#tbody").append(`<tr>
+                    <td>${item.id}</td>
+                    <td>${item.name}</td>
+                    <td>${item.email}</td>
+                    <td>${item.rollNo}</td>
+                    <td>${item.age}</td>
+                    
+                    <td>${item.isMale}</td>
+                 </tr>`)
+            })
+
+        }
+      });
+    });
+  });
+</script>

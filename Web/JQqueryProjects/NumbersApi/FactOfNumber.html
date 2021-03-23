@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JQUERY | check number facts</title>
+  </head>
+  <body>
+    <div>
+      <input type="text" name="inputbox" id="inputTextBox" />
+      <button id="submitBtn">Check Fact</button>
+    </div>
+    <div id="result">
+      <p id="resultFactText"></p>
+    </div>
+  </body>
+</html>
+<script src="../jquery.js"></script>
+<script>
+  $(function () {
+    $("#submitBtn").on("click", () => {
+        
+    let inputText = $("#inputTextBox").val();
+      $.get(`http://numbersapi.com/${inputText}`,function (data,status) {
+        if (status === "success") {
+          $("p").append(data);
+        }
+      });
+    });
+  });
+</script>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <section>
+        <input type="checkbox" class="chkBox" value="c#" id="c#">C#
+        <input type="checkbox" class="chkBox" value="java" id="java">java
+        <input type="checkbox" class="chkBox" value="php" id="php">php
+        
+        <input type="checkbox" class="chkBox" value="mysql" id="mysql">mysql
+    </section>
+    
+</body>
+</html>
+<script src="../jquery.js"></script>
+<script>
+    $(function(){
+        $(".chkBox").click(function(){
+            $(".chkBox:checked").each(function(){
+                console.log($(this).val());
+
+            });
+        });
+    });
+
+</script>

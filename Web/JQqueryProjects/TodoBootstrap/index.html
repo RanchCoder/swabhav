@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="bootstrap-3.4.1-dist/css/bootstrap.min.css"
+    
+    />
+
+   <link rel="stylesheet" href="style.css">
+    <script src="../jquery.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script
+      src="bootstrap-3.4.1-dist/js/bootstrap.min.js"
+      integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+      crossorigin="anonymous"
+    ></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="page-header">
+      <h1 class="display-4 text-center">Todo List</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            
+        <form>
+            <div class="form-group my-flex">
+                <div class="input-container">
+                  <label for="todoinput">Enter a todo</label>
+                  <input type="text" class="form-control" id="todoinput" placeholder="enter a todo">
+                </div>
+                <button type="submit" id="addBtn" class="btn btn-default"> <span class="glyphicon glyphicon-plus"></span></button>
+              </div>
+            
+        </form>
+
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+    <div class="row">
+       <div class="col-md-4 col-sm-1"></div>
+       <div class="col-md-4 col-sm-10">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <th>id</th>
+                    <th>task</th>
+                    <th>date & time</th>
+                </th>
+                <tbody id="tbody">
+                     
+                </tbody>
+            </table>
+          </div>
+       </div>
+       <div class="col-md-4 col-sm-1"></div>
+    </div>
+  </body>
+</html>
+<script>
+    $(function(){
+        if(isListInLocalStorage()){
+            PresentTodoList(getListFromLocalStorage());
+        }
+        $("#addBtn").on('click',()=>{
+        
+            let listOfTodos;
+
+            if(isListInLocalStorage()){
+                // console.log("list is present");
+                AddToList();
+            }else{
+                // console.log("list is absent");
+                setLocalStorage();
+                AddToList();
+            }      
+            
+
+        })
+    })
+
+    function PresentTodoList(listOfTodos){
+        listOfTodos.forEach(listItem => {
+            console.log(listItem.name);
+            $("#tbody").append(`<tr>
+                         <td>${listItem.id}</td>
+                         <td>${listItem.name}</td>
+                         <td>${listItem.dateTime}</td>
+                    </tr>`)
+        });
+       
+    }
+
+
+    function AddToList(){
+        listOfTodos = getListFromLocalStorage();
+                listOfTodos.push({"id":1,"name":getCurrentInputFromUser(),"dateTime":getLatestDateTime()});
+            localStorage.setItem("todoList",JSON.stringify(listOfTodos));
+            location.reload();
+    }
+
+    function isListInLocalStorage(){
+        if(localStorage.getItem("todoList") !== null){
+                 return true;
+            }
+            return false;
+    }
+
+    function setLocalStorage(){
+
+        localStorage.setItem("todoList",JSON.stringify([]));
+
+    }
+
+    function getListFromLocalStorage(){
+          return JSON.parse(localStorage.getItem("todoList"));
+    }
+    function isListObjectEmpty(listObject){
+        if(listObject.length === 0){
+            return true;
+        }
+        return false;
+
+    }
+
+    function getLatestDateTime(){
+            let date = new Date();
+            let currentDateTime = date.getDate() 
+                                  + " / "
+                                  + date.getMonth() 
+                                  + " / " 
+                                  + date.getFullYear() + " : "
+                                  + date.getHours() + " : "
+                                  + ((date.getMinutes() < 10) ? `0${date.getMinutes()}` : date.getMinutes())+ " "
+                                  + ((date.getUTCHours() < 12) ? "am" : "pm");
+            return currentDateTime;                      
+    }
+    function getCurrentInputFromUser(){
+        return $("#inputTodo").val();
+        
+    }
+</script>

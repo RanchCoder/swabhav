@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+      #paraContainer{
+          text-align:center;
+          align-items:center;
+      }
+      .show{
+          display:block;
+      }
+      .hide{
+          display:none;
+      }
+  </style>
+  <body>
+    <div id="paraContainer">
+      <p class="show">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis
+        veritatis dolorem quis quaerat ipsum velit doloribus voluptatum,
+        aspernatur nihil accusantium qui incidunt dolor minima maiores, aut
+        aliquam neque reprehenderit iure! Excepturi, odit? Iure officia quisquam
+        incidunt libero quis exercitationem qui vitae amet aliquid quaerat natus
+        consectetur animi, asperiores, odit reprehenderit?
+      </p>
+      <input type="button" class="btn" value="hide content" id="hiderBtn">
+      <input type="button" class="btn" value="show content" id="showBtn">
+    </div>
+  </body>
+</html>
+<script>
+    var paragraph = document.querySelector('p');
+    var button = document.getElementById("hiderBtn");
+    button.addEventListener('click',()=>{
+      if(!paragraph.classList.contains('hide')){
+        paragraph.classList.add('hide');
+        paragraph.classList.remove('show');
+      }
+        
+    });
+    
+    document.getElementById("showBtn").addEventListener('click',()=>{
+      if(!paragraph.classList.contains('show')){
+        paragraph.classList.add('show');
+        
+        paragraph.classList.remove('hide');
+      }
+    })
+    
+</script>

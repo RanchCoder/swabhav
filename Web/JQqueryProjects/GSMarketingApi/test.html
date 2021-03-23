@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn"></button>
+    
+</body>
+</html>
+
+<script src="../jquery.js"></script>
+<script>
+    
+    $(function(){
+        $("#btn").click(function(){
+            fetchAllStudentData().then(function(data){
+              console.log(data);
+        }).catch(function(mssg){
+            console.log(mssg);
+        })
+
+        })
+        
+    })
+
+    function fetchAllStudentData() {
+        return new Promise(function(resolve,reject){
+            $.get(
+      `http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students/`,
+      function (data, status) {
+        if (status === "success") {
+          resolve(data);
+        }else{
+            reject(new Error("cannot find data now."));
+        }
+      }
+    );
+
+    }) 
+        
+        
+    }
+    
+
+</script>

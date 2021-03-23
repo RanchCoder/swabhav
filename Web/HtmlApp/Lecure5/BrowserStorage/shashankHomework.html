@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Synchronous</title>
+  </head>
+  <body>
+    <button id="fun1">Fun1</button>
+    <button id="fun2">fun2</button>
+    <button id="fun3">fun3</button>
+    <script>
+      let fun1Btn = document.getElementById("fun1");
+
+      let fun2Btn = document.getElementById("fun2");
+
+      let fun3Btn = document.getElementById("fun3");
+
+      fun2Btn.addEventListener(
+        "click",
+        () => {
+          console.log("fun2 started");
+          let start = new Date().getTime();
+          console.log(new Date().getTime() - start);
+          while (new Date().getTime() - start < 5000);
+          console.log("wait is over");
+        },
+        false
+      );
+
+      fun1Btn.addEventListener(
+        "click",
+        () => {
+          console.log("Starting fun1");
+
+          console.log("Ending Fun1");
+        },
+        false
+      );
+
+      fun3Btn.addEventListener(
+        "click",
+        () => {
+          console.log("Wait 5 sec");
+          let currenttime = new Date().getTime();
+          let value;
+          let result;
+          while(result = ( (value = new Date().getTime()) - currenttime) < 5000){
+            console.log("hello");
+          }
+        },
+        false
+      );
+    </script>
+  </body>
+</html>

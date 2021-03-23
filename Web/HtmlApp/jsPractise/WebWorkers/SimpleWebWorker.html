@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Worker | SIMPLE</title>
+</head>
+<body>
+   <p id="webWorkerMessage"></p>    
+</body>
+</html>
+<script>
+    let worker = new Worker('simpleWebWorker.js');
+    let resultSection = document.getElementById("webWorkerMessage");
+    worker.addEventListener('message',responseFromWebWorker);
+    worker.postMessage("Simple post request from web worker");
+    
+    function responseFromWebWorker(dataResponse){
+         resultSection.innerHTML = dataResponse.data.response;
+    }
+</script>

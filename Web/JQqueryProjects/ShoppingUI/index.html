@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Shopping App | AMAZON</title>
+</head>
+<body>
+    <section id="titleBox" class="container">
+        <div id="title">
+            <h3>SHOPPING PRODUCT</h3>
+        </div>
+    </section>
+    <section class="container">
+        
+        <div id="formContent">
+          <form action="#" method="post">
+            <div class="form-content-element">
+              <div class="input-control input-label">
+                <label for="productName">Name</label>
+              </div>
+              <div class="input-control input-box">
+                <input type="text" name="productName" id="productName" placeholder="enter product name"/>
+              </div>
+            </div>
+            <div class="form-content-element">
+              <div class="input-control input-label">
+                <label for="price">Price</label>
+              </div>
+              <div class="input-control input-box">
+                <input type="text" name="price" id="price" placeholder="enter product price" />
+              </div>
+            </div>
+  
+            <div class="form-content-element">
+                <div class="input-control input-label">
+                  <label for="discount">discount</label>
+                </div>
+                <div class="input-control input-box">
+                  <input type="text" name="discount" id="discount" placeholder="enter product discount"/>
+                </div>
+              </div>
+             
+  
+            <div class="form-content-element">
+              <div class="input-control input-label">
+                <label for="category">Category</label>
+              </div>
+              <div  class="input-control input-box">
+                <select id="isMale" name="isMale">
+                  <option value="electronics" class="dropDownItem">electronics</option>
+                  <option value="clothings" class="dropDownItem">clothings</option>
+                </select>
+              </div>
+            </div>
+            <input type="submit" id="submitBtn" value="submit" />
+          </form>
+        </div>
+      </section>
+
+      <section class="container" id="resultSection">
+        <table class="tbl-todo">
+          <thead>
+            <th>Product Name</th>
+            <th>Product Price</th>
+            <th>Product Discount</th>
+            
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </section>
+    
+</body>
+</html>
+
+<script src="../jquery.js"></script>
+<script>
+
+    $(function(){
+        $("#submitBtn").click((e)=>{
+            e.preventDefault();
+            let formData = $('form').serializeArray();
+            var jsonData = {};
+            $.each(formData,function(){
+                jsonData[this.name] = this.value;
+            });
+            let finalArray  = [jsonData];
+            displayProductData(finalArray);
+
+        })
+    })
+
+     function displayProductData(productData) {
+    
+      productData.map((product) => {
+        $("#tbody").append(`<tr>
+    <td>${product.productName}</td>
+    <td>${product.price}</td>
+    <td>${product.discount}</td>
+   
+
+ </tr>`);
+      });
+    
+  }
+</script>

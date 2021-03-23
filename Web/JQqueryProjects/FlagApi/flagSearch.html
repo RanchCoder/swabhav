@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../TodoList/style.css">
+    <title>Document</title>
+</head>
+<body>
+    
+     <button id="submitBtn">Get country flag</button>
+     <section class="container" id="resultSection">
+        <table class="tbl-todo">
+            <thead>
+                <th>name</th>
+                <th>capital</th>
+                <th>flag</th>
+            </th>
+            <tbody id="tbody">
+                
+            </tbody>
+
+        </table>
+ </section>
+</body>
+
+</html>
+
+<script src="../jquery.js"></script>
+<script>
+  $(function () {
+    $("#submitBtn").on("click", () => {
+        
+    let inputText = $("#inputTextBox").val();
+      $.get(`https://restcountries.eu/rest/v2/all`,function (data,status) {
+        if (status === "success") {
+          
+            data.map((item)=>{
+                console.log(item.name);
+                console.log(item.capital);
+                console.log(item.flag);
+                $("#tbody").append(`<tr>
+                    <td>${item.name}</td>
+                    <td>${item.capital}</td>
+                    <td><img src='${item.flag}' width='300px' height='200px'></td>
+                 </tr>`)
+            })
+
+        }
+      });
+    });
+  });
+</script>

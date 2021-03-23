@@ -1,0 +1,17 @@
+.my-flex {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  .my-flex .input-container {
+    flex-grow: 1;
+  }
+
+  .my-flex button {
+    margin-left: 10px;
+  }
+  body{
+   padding:5px;
+  background-image: linear-gradient(to right, rgba(255,0,0,0),white,pink);
+  }

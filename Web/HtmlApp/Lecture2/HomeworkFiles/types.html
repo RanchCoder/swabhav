@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    var foo = null;
+    console.log(foo);
+    alert(foo);
+    document.write(foo);
+
+
+    foo = 'abc';
+    console.log(foo);
+
+    console.log(typeof foo);
+
+    foo = 20;
+    console.log(foo);
+
+    console.log(typeof foo);
+
+    
+  foo = true;
+  console.log(typeof foo);
+
+  foo = [];
+  console.log(typeof foo);
+
+  foo = {};
+  console.log(typeof foo);
+
+  foo = function () { };
+  console.log(typeof foo);
+
+
+  console.log("document == window.document" + (document == window.document));
+  console.log(location == window.location);
+  console.log(console == window.console);   
+
+
+ console.log(foo == window.foo);
+  console.log(window);
+
+</script>

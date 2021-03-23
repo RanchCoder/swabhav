@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Worker | USE</title>
+</head>
+<body>
+    <p id="resultForGreet"></p>
+    <p id="resultForComputation"></p>
+</body>
+</html>
+<script>
+    
+    let greetResultContainer = document.getElementById("resultForGreet");
+    let greetResultForDate = document.getElementById("resultForComputation");
+
+    function greetUser(){
+      
+    greetResultContainer.innerHTML = "Hello User";
+    
+    }
+
+    function generateDate(){
+        setInterval(()=>{
+            var currentDate = new Date();
+            console.log("Date " + currentDate.getDate() +" / " + currentDate.getMonth + " / " + currentDate.getFullYear());
+            greetResultForDate.innerHTML += "Date " + currentDate.getDate() +" / " + currentDate.getMonth + " / " + currentDate.getFullYear();
+        })
+    }
+
+    greetUser();
+    generateDate();
+    greetUser();
+</script>

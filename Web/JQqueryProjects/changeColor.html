@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JQUERY | color changer</title>
+  </head>
+  <body>
+    <button class="btn" id="red">red</button>
+    <button class="btn" id="blue">blue</button>
+  </body>
+</html>
+<script src="jquery.js"></script>
+
+<script>
+  $(document).ready(() => {
+    $(".btn").click(function () {
+      $("body").css("background-color",$(this).attr("id"));
+    });
+  });
+</script>

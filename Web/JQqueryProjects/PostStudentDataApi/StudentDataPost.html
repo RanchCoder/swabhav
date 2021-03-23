@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <section class="container">
+      <button id="showBtn">Show Form</button>
+    </section>
+    <section class="container">
+      <div id="formContent">
+        <form action="#" method="post">
+          <div class="form-content-element">
+            <div class="input-control input-label">
+              <label for="rollNo">Roll No</label>
+            </div>
+            <div class="input-control input-box">
+              <input type="text" name="rollNo" id="rollNo" />
+            </div>
+          </div>
+          <div class="form-content-element">
+            <div class="input-control input-label">
+              <label for="name">Name</label>
+            </div>
+            <div class="input-control input-box">
+              <input type="text" name="name" id="name" />
+            </div>
+          </div>
+
+          <div class="form-content-element">
+            <div class="input-control input-label">
+              <label for="age">Age</label>
+            </div>
+            <div class="input-control input-box">
+              <input type="text" name="age" id="=age" />
+            </div>
+          </div>
+
+          <div class="form-content-element">
+            <div class="input-control input-label">
+              <label for="email">Email</label>
+            </div>
+            <div class="input-control input-box">
+              <input type="text" name="email" id="email" />
+            </div>
+          </div>
+          <div class="form-content-element">
+            <div class="input-control input-label">
+              <label for="date">Date</label>
+            </div>
+            <div class="input-control input-box">
+              <input type="text" name="date" id="date" />
+            </div>
+          </div>
+
+          <div class="form-content-element">
+            <div class="input-control input-label">
+              <label for="isMale">Is male </label>
+            </div>
+            <div  class="input-control input-box">
+              <select id="isMale" name="isMale">
+                <option value="true" class="dropDownItem">True</option>
+                <option value="false" class="dropDownItem">false</option>
+              </select>
+            </div>
+          </div>
+          <input type="submit" id="submitBtn" value="submit" />
+        </form>
+      </div>
+    </section>
+  </body>
+</html>
+<script src="../jquery.js"></script>
+<script>
+  $(function () {
+    $("#formContent").hide();
+    $("#showBtn").on("click", function () {
+      $("#formContent").toggle();
+
+    });
+    
+    $("#submitBtn").click(function(event){
+        event.preventDefault();
+        let formData = $('form').serializeArray();
+        console.log(formData);
+        
+        var jsonData = {};
+        $.each(formData,function(){
+            jsonData[this.name] = this.value || '';
+        })
+       
+        $.post("http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students/",
+               jsonData,
+               function(data,status){
+                   console.log(data);
+               }
+        );
+
+        console.log(jsonData);
+    });
+
+  });
+</script>

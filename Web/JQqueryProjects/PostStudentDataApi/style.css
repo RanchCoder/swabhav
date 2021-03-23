@@ -1,0 +1,69 @@
+*{
+    padding:0;
+    margin:0;
+}
+
+.container{
+    width:90%;
+    margin:40px auto;
+    justify-content:center;
+    align-items:center;
+    height:auto;
+    text-align:center;
+
+}
+
+button{
+    margin:auto;
+}
+
+#formContent{
+    width:30%;
+    display:flex;
+    flex-direction:row;
+    margin:0 auto;
+}
+
+input[type="text"]{
+    padding:10px;
+    font-size:1rem;
+    margin:10px;
+}
+
+#showBtn{
+    width:200px;
+    height:60px;
+    border:none;
+    background:rgb(87, 233, 87);
+    color:rgb(247, 240, 240);
+    font-size: 18px;
+    font-weight:500;
+}
+
+.form-content-element{
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    font-size:19px;
+}
+
+#isMale{
+    width:220px;
+    padding:10px;
+    margin:10px;
+    border:none;
+    font-size:15px;
+}
+.dropDownItem{
+    padding:10px;
+}
+
+input[type="submit"]#submitBtn{
+    width:150px;
+    height:40px;
+    border:none;
+    background:rgb(43, 77, 231);
+    color:white;
+    font-size: 16px;
+    font-weight:500;
+}

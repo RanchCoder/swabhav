@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Listener Demo</title>
+</head>
+<style>
+  .container{
+      width:100%;
+      height:100vh;
+  }
+</style>
+<body>
+    <div class="container" id="box">
+        
+    <button id="red" value="red">Red</button>
+    <button id="blue" value="blue">Blue</button>
+
+    </div>
+</body>
+</html>
+<script>
+    var container = document.getElementById("box");
+    
+
+    document.querySelectorAll("button").forEach((item)=>{
+      item.addEventListener('click',()=>{
+          container.style.backgroundColor = item.value;
+      });  
+    })
+
+    
+
+</script>

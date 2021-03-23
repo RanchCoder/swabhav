@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Guess Game | pick the right ball.</title>
+</head>
+<body>
+    <header>
+        <div class="box">
+            <h2>Guess Game App</h2>
+        </div>
+    </header>
+    <section class="container informativeSection" id="game-description">
+        <div class="box">
+            <div class="description-title">
+                <h3>Pick a ball, see if your guess is right.</h3>
+            </div>
+            <div class="description-symbolic">
+                <div class="symbolic-balls">
+                    <div class="ball-container">
+                        <div class="ball red"></div>
+                        <div class="red-text">
+                            <h3>Oops! Too low, Make a HIGH guess.</h3>
+                        </div>
+                           
+                    </div>
+                    <div class="ball-container">
+                        <div class="ball blue"></div>
+                    
+                        <div class="blue-text">
+                            <h3>Bingo! you've made it. Target reached.</h3>
+                        </div>
+                            
+                    </div>
+
+                    <div class="ball-container">
+                   
+                        <div class="ball green"></div>
+                        <div class="green-text">
+                            <h3>Woooh! Went too far. Make a LOW guess.</h3>
+                        </div>
+                
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="StartSection" id="startSection">
+        <div class="box">
+            <button class="btn btn-success" id="startSectionButton">START</button>
+        </div>
+    </section>
+
+    <section class="container informativeSection" id="game-section">
+        
+        <div id="main-area">
+              
+        </div>
+    </section>
+
+    <section class="alertBox" id="alertBox">
+         <div class="messageBox" id="messageBox">
+             <div class="message">
+                 <h3 id="message">Bingo!!! Target Reached...</h3>
+             </div>
+             <div class="play-again-text">
+                 <h4>Do you want to play again?</h4>
+             </div>
+             <div class="optionButtons">
+                  <button class="optionButton btn btn-primary" id="yes" value="yes">Yes</button>
+                  <button id="no" class="optionButton btn btn-danger" value="no">No</button>
+             </div>
+             <div class="cancel-icon" id="cancel-icon">
+                 <span><i class="fa fa-times" aria-hidden="true"></i></span>
+             </div>
+         </div>
+    </section>
+    
+</body>
+</html>
+<script src="app.js">    
+</script>
