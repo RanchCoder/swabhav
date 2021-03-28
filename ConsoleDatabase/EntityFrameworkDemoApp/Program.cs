@@ -11,10 +11,40 @@ namespace EntityFrameworkDemoApp
         static DemoDbContext db = new DemoDbContext();
         static void Main(string[] args)
         {
-           //CreateEmployee();
-           DeleteEmployee();
-           //UpdateEmployee();
+            Case2();
+            //CreateEmployee();
+           // DeleteEmployee();
+            //UpdateEmployee();
             Console.ReadLine();
+        }
+
+        private static void Case1() {
+
+            var emp = db.Employees.
+                      ToList().
+                      Where(e => e.Salary > 5000).
+                      Select(e => new { e.Name, e.Salary });
+
+            foreach(var employee in emp)
+            {
+                Console.WriteLine($"name : {employee.Name} | salary : {employee.Salary}");
+
+            }
+        }
+
+
+        private static void Case2()
+        {
+            var emp = db.Employees.
+                      Where(e => e.Salary > 5000).
+                      Select(e => new { e.Name, e.Salary }).
+                      ToList();
+
+            foreach (var employee in emp)
+            {
+                Console.WriteLine($"name : {employee.Name} | salary : {employee.Salary}");
+
+            }
         }
 
         private static void CreateEmployee()
