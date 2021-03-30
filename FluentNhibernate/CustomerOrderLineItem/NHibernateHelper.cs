@@ -27,7 +27,7 @@ namespace CustomerOrderLineItem
             _sessionFactory = Fluently.Configure()
                               .Database(MsSqlConfiguration.MsSql2012.ConnectionString("server=.\\SQLEXPRESS;Database=customerOrderLineItem;User Id=sa;Password=root"))
                               .Mappings(m => m.FluentMappings.AddFromAssemblyOf<Program>())
-                              .ExposeConfiguration(cfg => new SchemaExport(cfg).Create(true, true))
+                              .ExposeConfiguration(cfg => new SchemaExport(cfg).Create(true, false))
                               .BuildSessionFactory();
         }
 

@@ -16,8 +16,7 @@ namespace CustomerOrderLineItem.Mapper
             Map(x => x.Quantity);
             References(x => x.ProductType);
 
-            HasManyToMany(x => x.OrderList)
-                .Inverse()
+            References(x => x.Order)                
                 .Cascade.All();
             Table("tbl_lineItem");
         }

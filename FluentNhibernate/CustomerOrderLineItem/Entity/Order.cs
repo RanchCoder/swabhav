@@ -14,7 +14,7 @@ namespace CustomerOrderLineItem.Entity
 
         public virtual void AddLineItemToOrder(LineItem item)
         {
-            item.OrderList.Add(this);
+            item.Order = this;
             LineItems.Add(item);
         }
     }

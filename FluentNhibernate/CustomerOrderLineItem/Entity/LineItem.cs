@@ -11,7 +11,7 @@ namespace CustomerOrderLineItem.Entity
         public virtual int Id { get; set; }
 
         public virtual int Quantity { get; set; }
-        public virtual IList<Order> OrderList  { get; set; } = new List<Order>();
+        public virtual Order Order  { get; set; }
         public virtual Product ProductType { get; set; }
 
         public virtual void CreateLineItemForOrder(Product product)

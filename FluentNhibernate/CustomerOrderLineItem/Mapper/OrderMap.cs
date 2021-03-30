@@ -14,7 +14,8 @@ namespace CustomerOrderLineItem.Mapper
         {
             Id(x => x.Id);
             References(x => x.Customer);
-            HasManyToMany(x => x.LineItems)               
+            HasMany(x => x.LineItems)     
+                .Inverse()
                 .Cascade.All();
             Table("tbl_order");
         }
