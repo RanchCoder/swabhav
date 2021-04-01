@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h3>Submit Form Data</h3>
+<div>
+    @using (Html.BeginForm("FormDataDropDown", "Home", FormMethod.Post))
+    {
+
+
+        @*<div>
+            @Html.DropDownList("Department", new List<SelectListItem> {
+         new SelectListItem{Text="IT" ,Value="1"},
+         new SelectListItem{Text="Sales" ,Value="1"},
+
+         new SelectListItem{Text="Marketing" ,Value="3"},
+         new SelectListItem{Text="HR" ,Value="4"}
+
+       }, "Select Department")
+        </div>*@
+
+
+        
+
+
+
+        <div>
+            <input type="Submit" value="submit" />
+        </div>
+    }
+</div>
+

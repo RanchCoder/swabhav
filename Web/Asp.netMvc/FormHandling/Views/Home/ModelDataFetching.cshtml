@@ -1,0 +1,26 @@
+﻿@model FormHandling.Models.User
+
+@{
+    ViewBag.Title = "ModelDataFetching";
+}
+
+<h2>Fetching user data using model</h2>
+
+<div>
+    @using (Html.BeginForm("DynamicTextBox", "Home", FormMethod.Post))
+    {
+
+        @Html.TextBoxFor(m => m.Id)
+        <br/>
+        @Html.TextBoxFor(m => m.Name)
+
+        <div>
+            <input type="Submit" value="submit" />
+        </div>
+    }
+
+</div>
+
+
+
+
