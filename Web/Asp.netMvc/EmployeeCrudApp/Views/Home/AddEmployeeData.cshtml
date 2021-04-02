@@ -1,0 +1,55 @@
+﻿@model EmployeeCrudApp.ViewModels.EmployeeVM
+
+@{
+    ViewBag.Title = "AddEmployeeData";
+}
+
+<h2>Employee Record</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Name
+            
+        </th>
+        <th>
+            Designation
+            
+        </th>
+        <th>
+            Department
+        </th>
+        <th>
+            Salary
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Employees)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Designation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+

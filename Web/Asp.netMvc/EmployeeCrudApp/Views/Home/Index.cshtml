@@ -1,0 +1,92 @@
+﻿@model EmployeeCrudApp.Models.Employee
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Add Employee</h2>
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-success alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>@ViewBag.Message</strong>
+    </div>
+
+    
+
+}
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            @using (Html.BeginForm("AddEmployeeData", "Home", FormMethod.Post))
+            {
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-3" })
+
+
+                    @Html.EditorFor(m => m.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger", @style = "margin-left:30px;" })
+
+
+
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Department, htmlAttributes: new { @class = "control-label col-md-3" })
+
+
+                    @Html.EditorFor(m => m.Department, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => m.Department, "", new { @class = "text-danger", @style = "margin-left:30px;" })
+
+
+
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Designation, htmlAttributes: new { @class = "control-label col-md-3" })
+
+
+                    @Html.EditorFor(m => m.Designation, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => m.Designation, "", new { @class = "text-danger", @style = "margin-left:30px;" })
+
+
+
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Salary, htmlAttributes: new { @class = "control-label col-md-3" })
+
+
+                    @Html.EditorFor(m => m.Salary, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(m => m.Salary, "", new { @class = "text-danger", @style = "margin-left:30px;" })
+
+
+
+                </div>
+
+
+
+
+
+
+
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Add" class="btn btn-success" style="margin-top:10px" />
+                    </div>
+                </div>
+
+
+
+
+            }
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

@@ -7,13 +7,18 @@
 <h2>Fetching user data using model</h2>
 
 <div>
-    @using (Html.BeginForm("DynamicTextBox", "Home", FormMethod.Post))
+    @using (Html.BeginForm("DynamicTextBox", "Home", FormMethod.Get))
     {
 
         @Html.TextBoxFor(m => m.Id)
-        <br/>
+
+        <br />
+        <br />
         @Html.TextBoxFor(m => m.Name)
 
+
+        <br />
+        <br />
         <div>
             <input type="Submit" value="submit" />
         </div>
