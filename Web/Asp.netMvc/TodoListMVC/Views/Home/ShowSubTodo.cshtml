@@ -46,7 +46,8 @@
                 }
             </td>
             <td>
-                @Html.ActionLink("Edit Sub Todo", "EditSubTodo", new { @class = "normal-link", id = item.Id })
+                @Html.ActionLink("Edit Sub Todo", "EditSubTodo", new { @class = "normal-link", id = item.Id }) |
+                @Html.ActionLink("Delete Sub Todo", "DeleteSubTodo", new { @class = "normal-link", subTodoId = item.Id })
             </td>
 
         </tr>

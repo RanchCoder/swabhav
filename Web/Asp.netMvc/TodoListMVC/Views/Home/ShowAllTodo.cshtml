@@ -5,6 +5,16 @@
 }
 
 
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-success alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>@ViewBag.Message</strong>
+    </div>
+
+}
+
+
 <div class="page-header center-text">
     <h3>@Session["AuthenticUser"].ToString()'s Todo List</h3>
 
@@ -18,21 +28,23 @@
         <th></th>
     </tr>
 
-     @foreach(var item in Model)
-     {
-      <tr>
-        <td>
-          @Html.DisplayFor(listItem => item.Id)
-        </td>
-        <td>
-          @Html.DisplayFor(listItem => item.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Show Sub Todos", "ShowSubTodo", new { id = item.Id }) |
-            @Html.ActionLink("Add Sub Todos", "AddSubTodo", new { id = item.Id })
-        </td>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(listItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(listItem => item.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Show Sub Todos", "ShowSubTodo", new { id = item.Id }) |
+                @Html.ActionLink("Add Sub Todos", "AddSubTodo", new { id = item.Id }) |
+                @Html.ActionLink("Delete Sub Todos", "DeleteTodo", new { todoId = item.Id })
 
-      </tr>
-     }
+            </td>
+
+        </tr>
+    }
 </table>
 

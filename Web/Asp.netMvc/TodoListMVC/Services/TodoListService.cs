@@ -28,6 +28,11 @@ namespace TodoListMVC.Services
             return todoListRepository.AddATodo(todo,userName);
         }
 
+        public bool DeleteTodo(int todoId)
+        {
+            return todoListRepository.DeleteTodo(todoId);
+        }
+
         public List<SubTodoList> GetSubTodoLists(int todoId)
         {
            return todoListRepository.GetSubTodoLists(todoId);
@@ -50,6 +55,11 @@ namespace TodoListMVC.Services
         public List<TodoList> GetTodoLists(string username)
         {
             return todoListRepository.GetTodoLists(username);
+        }
+
+        public bool DeleteSubTodoItem(int subTodoId)
+        {
+            return todoListRepository.DeleteSubTodoItem(subTodoId);
         }
 
         public bool InitializeTodoList()

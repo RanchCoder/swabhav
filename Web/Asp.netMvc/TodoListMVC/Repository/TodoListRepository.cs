@@ -49,6 +49,26 @@ namespace TodoListMVC.Repository
             return _todoDBContext.TodoLists.Where(todo => todo.Id == id).FirstOrDefault();
         }
 
+        public bool DeleteTodo(int todoId)
+        {
+            try
+            {
+                var todoToBeRemoved = _todoDBContext.TodoLists.Where(todo => todo.Id == todoId).FirstOrDefault();
+                var subTodosToBeRemoved = _todoDBContext.SubTodoLists.Where(subTodo => subTodo.TodoList.Id == todoId).ToList();
+                foreach (var subTodo in subTodosToBeRemoved)
+                {
+                    _todoDBContext.SubTodoLists.Remove(subTodo);
+                }
+                _todoDBContext.TodoLists.Remove(todoToBeRemoved);
+                _todoDBContext.SaveChanges();
+                return OPERATION_SUCCESSFUL;
+            }catch(Exception ex)
+            {
+                return OPERATION_FAILURE;
+            }
+            
+        }
+
 
         public bool AddNewSubTodo(string subTodoName, int todoId)
         {
@@ -98,9 +118,28 @@ namespace TodoListMVC.Repository
         public SubTodoList GetSubTodoItemById(int id)
         {
             return _todoDBContext.SubTodoLists.Where(subTodo => subTodo.Id == id).FirstOrDefault();
-        }               
+        }
 
-        
+        public bool DeleteSubTodoItem(int subTodoId)
+        {
+            try
+            {
+               
+                var subTodoToBeRemoved = _todoDBContext.SubTodoLists.Where(subTodo => subTodo.Id == subTodoId).FirstOrDefault();
+                
+                    _todoDBContext.SubTodoLists.Remove(subTodoToBeRemoved);
+                
+                _todoDBContext.SaveChanges();
+                return OPERATION_SUCCESSFUL;
+            }
+            catch (Exception ex)
+            {
+                return OPERATION_FAILURE;
+            }
+
+        }
+
+
         public bool InitializeTodoList()
         {
             TodoList todo1 = new TodoList() { Name = "Reading"};

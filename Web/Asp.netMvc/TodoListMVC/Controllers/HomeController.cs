@@ -70,8 +70,12 @@ namespace TodoListMVC.Controllers
         }
 
         [AuthorizeAccess]
-        public ActionResult ShowAllTodo()
+        public ActionResult ShowAllTodo(string Message)
         {
+            if(Message != null)
+            {
+                ViewBag.Message = Message;
+            }
             List<TodoListVM> todoList = new List<TodoListVM>();
             string username = (string)Session["AuthenticUser"];
             var todoListFromService = todoListService.GetTodoLists(username);
@@ -81,6 +85,20 @@ namespace TodoListMVC.Controllers
 
             }
             return View(todoList);
+        }
+
+        [AuthorizeAccess]
+        public ActionResult DeleteTodo(int todoId)
+        {
+            bool isTodoDeleted = todoListService.DeleteTodo(todoId);
+            if (isTodoDeleted)
+            {
+                return RedirectToAction("ShowAllTodo",new {Message = "Todo deleted successfully" });
+            }
+            else
+            {
+                return RedirectToAction("ShowAllTodo", new { Message = "Cannot delete todo" });
+            }
         }
 
         [AuthorizeAccess]
@@ -162,6 +180,20 @@ namespace TodoListMVC.Controllers
             else
             {
                 return RedirectToAction("Error");
+            }
+        }
+
+        [AuthorizeAccess]
+        public ActionResult DeleteSubTodo(int subTodoId)
+        {
+            bool isSubTodoDeleted = todoListService.DeleteSubTodoItem(subTodoId);
+            if (isSubTodoDeleted)
+            {
+                return RedirectToAction("ShowAllTodo", new { Message = "Sub todo deleted successfully" });
+            }
+            else
+            {
+                return RedirectToAction("ShowAllTodo", new { Message = "Cannot delete sub todo" });
             }
         }
 
