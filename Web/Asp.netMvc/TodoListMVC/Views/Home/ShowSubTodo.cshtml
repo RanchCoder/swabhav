@@ -1,0 +1,55 @@
+﻿@model List<TodoListMVC.ViewModels.SubTodoListVM>
+
+@{
+    ViewBag.Title = "ShowSubTodo";
+}
+
+
+<div class="page-header center-text">
+    <h2>View All Sub TodoList</h2>
+</div>
+
+
+
+
+<table class="table">
+    <tr>
+        <th> Id</th>
+
+        <th>Sub-Todo Name</th>
+        <th>Sub-Todo Date</th>
+        <th>Sub-Todo Status</th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(listItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(listItem => item.SubTodoName)
+            </td>
+            <td>
+                @Html.DisplayFor(listItem => item.SubTodoDate)
+            </td>
+            <td>
+                @if (item.SubTodoStatus)
+                {
+                    <p>Completed</p>
+                }
+                else
+                {
+                    <p>Pending</p>
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Edit Sub Todo", "EditSubTodo", new { @class = "normal-link", id = item.Id })
+            </td>
+
+        </tr>
+    }
+</table>
+

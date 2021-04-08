@@ -1,0 +1,26 @@
+﻿body {
+}
+
+
+
+.link-btn{
+    text-align:center;
+}
+
+td>a {
+    color: midnightblue;
+}
+.form-group{
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+    align-items:center;
+
+}
+
+.center-text{
+    text-align:center;
+}
+
+
+

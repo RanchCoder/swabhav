@@ -1,0 +1,54 @@
+﻿@model TodoListMVC.ViewModels.AddSubTodoVM
+
+@{
+    ViewBag.Title = "AddSubTodo";
+}
+
+
+
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-success alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>@ViewBag.Message</strong>
+    </div>
+
+}
+
+<div class="row">
+    <div class="col-md-3"></div>
+
+    <div class="col-md-6">
+
+        <div class="page-header center-text">
+            <h3>Add Sub-Todo</h3>
+
+        </div>
+        @using (Html.BeginForm("SaveNewSubTodo", "Home", FormMethod.Post))
+        {
+            <div class="form-group">
+              @Html.HiddenFor(m => m.TodoListId, new { Value = Model.TodoListId })
+
+            </div>
+            <div class="form-group">
+
+                @Html.LabelFor(model => model.SubTodoName, new { @class = "control-label col-md-3" })
+                @Html.EditorFor(model => model.SubTodoName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(m => m.SubTodoName, "", new { @class = "text-danger", @style = "margin-left:30px;" })
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Add Sub Todo" class="btn btn-success" style="margin-top:10px" />
+                </div>
+            </div>
+
+        }
+    </div>
+
+    <div class="col-md-3"></div>
+
+</div>
+
+
+

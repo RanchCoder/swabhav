@@ -1,5 +1,6 @@
 ﻿using FirstWebBasedDatabaseApp.Repository;
 using FirstWebBasedDatabaseApp.Services;
+using FirstWebBasedDatabaseApp.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,13 @@ namespace FirstWebBasedDatabaseApp.Controllers
                 return View("Error");
             }
             
+        }
+
+        public ActionResult ViewContact()
+        {
+            ViewContactVM viewContact = new ViewContactVM(); 
+                viewContact.Contacts = contactRepository.GetContacts();
+            return View(viewContact);
         }
 
 

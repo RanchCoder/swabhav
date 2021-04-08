@@ -1,12 +1,69 @@
-﻿
+﻿@model EmployeeCrudApp.ViewModels.EmployeeVM
 
 @{
     ViewBag.Title = "ShowAllEmployee";
 }
 
-<h2>ShowAllEmployee</h2>
 
-<div>
-    <p>Counter - @ViewBag.Counter</p>
-</div>
+
+<h2>Employee Record</h2>
+
+@Html.ActionLink("Add Employees", "Index")
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-success alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>@ViewBag.Message</strong>
+    </div>
+
+
+
+}
+
+
+<table class="table">
+    <tr>
+        <th>
+            Name
+
+        </th>
+        <th>
+            Designation
+
+        </th>
+        <th>
+            Department
+        </th>
+        <th>
+            Salary
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Employees)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Designation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salary)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditEmployeeVM", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "DeleteEmployeeVM", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
 

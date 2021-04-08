@@ -1,0 +1,38 @@
+﻿@model List<TodoListMVC.ViewModels.TodoListVM>
+
+@{
+    ViewBag.Title = "ShowAllTodo";
+}
+
+
+<div class="page-header center-text">
+    <h3>@Session["AuthenticUser"].ToString()'s Todo List</h3>
+
+</div>
+
+<table class="table">
+    <tr>
+        <th> Id</th>
+
+        <th> Name</th>
+        <th></th>
+    </tr>
+
+     @foreach(var item in Model)
+     {
+      <tr>
+        <td>
+          @Html.DisplayFor(listItem => item.Id)
+        </td>
+        <td>
+          @Html.DisplayFor(listItem => item.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Show Sub Todos", "ShowSubTodo", new { id = item.Id }) |
+            @Html.ActionLink("Add Sub Todos", "AddSubTodo", new { id = item.Id })
+        </td>
+
+      </tr>
+     }
+</table>
+

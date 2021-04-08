@@ -1,4 +1,5 @@
-﻿using LoginWithServiceApp.Models;
+﻿using LoginWithServiceApp.Filter;
+using LoginWithServiceApp.Models;
 using LoginWithServiceApp.Service;
 using System;
 using System.Collections.Generic;
@@ -21,17 +22,32 @@ namespace LoginWithServiceApp.Controllers
             return View();
         }
 
+
         public ActionResult ValidateUserData(User user)
         {
+            User u;
             bool result = userService.IsValidUser(user);
+
+
             if (result)
             {
-                return View(user);
+                
+                Session["UserAccount"] = user;
+                return View("WelcomePage", user);
             }
             else
             {
-                return RedirectToAction("Index",new { ErrorMessage = "Please enter correct credentials to login successfully"});
-            }
+                return RedirectToAction("Index", new { ErrorMessage = "Please enter correct credentials to login successfully" });
+
+            }           
+            
+        }
+
+        [CustomFilter]
+        public ActionResult WelcomePage()
+        {
+            User user = (User)Session["UserAccount"];
+            return View(user);
         }
     }
 }

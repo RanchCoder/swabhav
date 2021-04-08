@@ -1,0 +1,55 @@
+﻿@model FirstWebBasedDatabaseApp.ViewModel.ViewContactVM
+
+@{
+    ViewBag.Title = "ViewContact";
+}
+
+<h2>View All Contact</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            FirstName
+
+        </th>
+        <th>
+            LastName
+
+        </th>
+        <th>
+            Address
+        </th>
+        <th>
+            PhoneNo
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Contacts)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNo)
+            </td>
+            
+        </tr>
+    }
+
+</table>
+
+
+
+
+
+
+

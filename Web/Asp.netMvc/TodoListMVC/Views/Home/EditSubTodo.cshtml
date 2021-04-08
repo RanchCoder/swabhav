@@ -1,0 +1,75 @@
+﻿@model TodoListMVC.ViewModels.SubTodoListVM
+
+@{
+    ViewBag.Title = "EditSubTodo";
+}
+
+<h2>Edit Sub Todo</h2>
+
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+
+        <div class="page-header center-text">
+            <h3>Edit Todo List</h3>
+
+        </div>
+        @using (Html.BeginForm("EditedSubTodoSave", "Home", FormMethod.Post))
+        {
+            <div class="form-group">
+                
+
+                @Html.HiddenFor(m => m.Id, new { htmlAttributes = new { @class = "form-control", @text = Model.Id} })
+                
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.SubTodoName, htmlAttributes: new { @class = "control-label col-md-3" })
+
+
+                @Html.EditorFor(m => m.SubTodoName, new { htmlAttributes = new { @class = "form-control", @text = Model.SubTodoName, disabled = "disabled", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(m => m.SubTodoName, "", new { @class = "text-danger", @style = "margin-left:30px;" })
+
+
+
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.SubTodoDate, htmlAttributes: new { @class = "control-label col-md-3" })
+                
+
+                @Html.EditorFor(m => m.SubTodoDate, new { htmlAttributes = new { @class = "form-control", @text = Model.SubTodoDate, disabled = "disabled", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(m => m.SubTodoDate, "", new { @class = "text-danger", @style = "margin-left:30px;" })
+
+
+
+            </div>
+
+            
+
+
+            <div class="form-group">
+                @Html.Label("Status", htmlAttributes: new { @class = "control-label col-md-3" })
+
+                @Html.DropDownListFor(m => m.SubTodoStatus,
+                  new List<SelectListItem>(){
+                  new SelectListItem { Value = "False", Text = "Pending" },
+                  new SelectListItem { Value = "True", Text = "Completed" }
+                }, "Not set", new { @class = "form-control col-md-1" })
+            </div>
+            
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Add" class="btn btn-success" style="margin-top:10px" />
+                </div>
+            </div>
+
+        }
+    </div>
+
+    <div class="col-md-3"></div>
+</div>
+

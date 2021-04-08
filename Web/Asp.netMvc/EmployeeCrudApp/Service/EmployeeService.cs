@@ -32,5 +32,42 @@ namespace EmployeeCrudApp.Service
         {
             return EmployeeList;
         }
+
+        public  Employee GetEmployeeById(int id)
+        {
+            return EmployeeList.Where(x => x.Id == id).FirstOrDefault();
+        }
+
+        public  string EditEmployeeData(Employee employee)
+        {
+            try
+            {
+                foreach (var emp in EmployeeList.Where(x => x.Id == employee.Id))
+                {
+                    emp.Id = employee.Id;
+                    emp.Name = employee.Name;
+                    emp.Department = employee.Department;
+                    emp.Designation = employee.Designation;
+                    emp.Salary = employee.Salary;
+                }
+                return "SUCCESS";
+            }catch(Exception ex)
+            {
+                return "FAILURE";
+            }
+            
+        }
+
+        public string DeleteEmployee(int id)
+        {
+            try
+            {
+                EmployeeList.Remove(EmployeeList.Where(emp => emp.Id == id).Single());
+                return "SUCCESS";
+            }catch(Exception ex)
+            {
+                return "FAILURE";
+            }
+        }
     }
 }
