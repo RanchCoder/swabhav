@@ -111,6 +111,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="img\HP_todoMainArea.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -143,6 +144,7 @@
     <Compile Include="Services\TodoListService.cs" />
     <Compile Include="ViewModels\AddSubTodoVM.cs" />
     <Compile Include="ViewModels\AddTodoVM.cs" />
+    <Compile Include="ViewModels\LoginVM.cs" />
     <Compile Include="ViewModels\RegistrationVM.cs" />
     <Compile Include="ViewModels\SubTodoListVM.cs" />
     <Compile Include="ViewModels\TodoListVM.cs" />
@@ -163,6 +165,7 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\AddTodo.cshtml" />
     <Content Include="Views\Home\AddSubTodo.cshtml" />
+    <Content Include="Views\Home\HomePage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

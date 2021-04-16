@@ -35,8 +35,16 @@ namespace FirstWebApiApp.Controllers
         [System.Web.Http.Description.ResponseType(typeof(Employee))]
         public  IHttpActionResult PostAnything([FromBody] Employee employee)
         {
-             employeeService.GetEmployeeList().Add(employee);
-             return Ok("Employee Record saved");
+            if (ModelState.IsValid)
+            {
+                employeeService.GetEmployeeList().Add(employee);
+                return Ok("Employee Record saved");
+
+            }
+            else
+            {
+                return Ok("Employee record not saved");
+            }
         }
 
         [HttpPut]

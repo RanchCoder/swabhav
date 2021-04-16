@@ -1,0 +1,19 @@
+<div [style.height] = "'500px'" [style.width]="'400px'" [style.border]="'2px solid black'" id="box-div">
+    <h1 [style.fontSize.px] = "'40'">Price Calculator App</h1>
+     <div class="flex-div">
+        <label>Price</label> 
+        <input type="text" #price>
+     
+
+     </div>
+     <div class="flex-div">
+        <label>Discount</label> <input type="text" #discount>
+     
+
+     </div>
+     <button (click)="PriceCalculator(price.value,discount.value)">Calculate</button>
+     <div>
+         <h3>COST:</h3></div>
+<div [innerText] = "cost" [style.text.align]="'center'"></div>
+</div>
+

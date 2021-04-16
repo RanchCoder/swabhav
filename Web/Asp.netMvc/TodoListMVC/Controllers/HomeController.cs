@@ -20,6 +20,11 @@ namespace TodoListMVC.Controllers
             Console.WriteLine("home controller called");
         }
 
+        public ActionResult HomePage()
+        {
+            return View();
+        }
+
         [AuthorizeAccess]
         public ActionResult Index(string Message)
         {
@@ -104,6 +109,7 @@ namespace TodoListMVC.Controllers
         [AuthorizeAccess]
         public ActionResult ShowSubTodo(int id)
         {
+            ViewBag.TodoId = id;
             Console.WriteLine(id.GetType());
             var subTodoList = todoListService.GetSubTodoLists(id);
             List<SubTodoListVM> subTodoListVM = new List<SubTodoListVM>();
@@ -207,16 +213,27 @@ namespace TodoListMVC.Controllers
             return View();
         }
 
-
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
         public ActionResult Login(string Message)
         {
-            if(Message != null)
-            {
-                ViewBag.Message = Message;
-            }
-            
 
-            return View();
+           
+            
+            if(Session["AuthenticUser"] != null)
+            {
+                if (Message != null)
+                {
+                    ViewBag.Message = Message;
+                }
+                return RedirectToAction("ShowAllTodo", new { Message = $"Welcome {Session["AuthenticUser"]}" });
+
+            }
+            else
+            {
+                return View();
+            }
+
+            
         }
 
         public ActionResult Logout()
@@ -231,8 +248,7 @@ namespace TodoListMVC.Controllers
             if (isUserAuthentic)
             {
                 Session["AuthenticUser"] = registredUser.UserName;
-                
-                return RedirectToAction("Index",new {Message = $"Welcome {Session["AuthenticUser"]}" });
+                return RedirectToAction("ShowAllTodo", new {Message = $"Welcome {Session["AuthenticUser"]}" });
 
             }
             else

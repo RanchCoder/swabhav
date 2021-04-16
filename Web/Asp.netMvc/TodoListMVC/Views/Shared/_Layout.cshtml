@@ -22,11 +22,7 @@
                 @Html.ActionLink("Todo List", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-left">
-                    <li>@Html.ActionLink("Add Todo", "AddTodo", "Home")</li>
-                    <li>@Html.ActionLink("View Todo", "ShowAllTodo", "Home")</li>
-
-                </ul>
+                
 
                 <ul class="nav navbar-nav navbar-right">
                     @if (Session["AuthenticUser"] != null)

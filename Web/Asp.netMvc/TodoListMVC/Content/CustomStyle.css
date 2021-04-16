@@ -1,10 +1,85 @@
-﻿body {
+﻿@import url('https://fonts.googleapis.com/css2?family=Zilla+Slab+Highlight:wght@700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
 }
 
 
+h3 {
+    font-family: 'Zilla Slab Highlight', cursive;
+    font-weight: 700;
+    font-size: 50px;
+}
 
-.link-btn{
-    text-align:center;
+h2 {
+    font-family: 'Zilla Slab Highlight', cursive;
+    font-weight: 500;
+    font-size: 30px;
+}
+
+
+nav .navbar-header a, .navbar-nav li a {
+    color: floralwhite;
+}
+
+.navbar-collapse {
+    padding-left: 0px;
+}
+
+.navbar-nav {
+    float: none;
+    text-align: center;
+    margin: 0;
+}
+
+    .navbar-nav li {
+        float: none;
+        display: inline-block;
+    }
+
+        .navbar-nav li.link-right {
+            float: right;
+        }
+
+.navbar-custom {
+    background-color: #1f8f8f;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.center-image {
+    width: 400px;
+    height: 350px;
+}
+
+.hp-main-image {
+    width: 400px;
+    height: 350px;
+}
+
+.main-content {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.link-btn {
+    text-align: center;
 }
 
 td>a {
@@ -22,5 +97,9 @@ td>a {
     text-align:center;
 }
 
+.link-btn {
+    color: white;
+    text-decoration:none;
+}
 
 

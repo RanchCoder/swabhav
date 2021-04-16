@@ -1,0 +1,10 @@
+"use strict";
+exports.__esModule = true;
+var Cricket_1 = require("./Cricket");
+var Football_1 = require("./Football");
+var cricketCoach = new Cricket_1.Cricket();
+var footballCoach = new Football_1.Football();
+var coachArray = [];
+coachArray.push(cricketCoach);
+coachArray.push(footballCoach);
+coachArray.forEach(function (item) { return console.log(item.getDailyWorkout()); });

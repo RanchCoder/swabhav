@@ -11,13 +11,16 @@ namespace TodoListMVC.ViewModels
         [Key]
         public int Id { get; set; }
 
-        [Required]
+       
+        [Required(ErrorMessage = "Username is required")]
         public string UserName { get; set; }
 
-        [Required]
+
+        [Required(ErrorMessage = "Password is required")]
         public string Password { get; set; }
 
-        [Required]
+
+        [Required(ErrorMessage = "Confirm Password is required")]
         [Compare("Password",ErrorMessage ="Password and compare password must match")]
         public string ConfirmPassword { get; set; }
 

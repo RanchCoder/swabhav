@@ -10,12 +10,12 @@ namespace TodoListMVC.Models
         [Key]
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Username is required")]
         public  string UserName { get; set; }
 
 
 
-        [Required]
+        [Required(ErrorMessage = "Password is required")]
         public string Password { get; set; }
 
         public List<TodoList> UserTodoLists { get; set; } = new List<TodoList>();

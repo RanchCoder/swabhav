@@ -10,17 +10,23 @@
 </div>
 
 
+<div class="add-btn">
+    <button class="btn btn-success" style="margin-top:10px; margin-bottom:10px;">
+        @Html.ActionLink("Add", "AddSubTodo", "Home",new { id = ViewBag.TodoId},new { @class = "link-btn"})
+    </button>
 
+</div>
 
 <table class="table">
     <tr>
         <th> Id</th>
 
-        <th>Sub-Todo Name</th>
-        <th>Sub-Todo Date</th>
-        <th>Sub-Todo Status</th>
+        <th>Name</th>
+        <th>Date</th>
+        <th>Status</th>
 
-        <th></th>
+        <th>Show | Delete</th>
+
     </tr>
 
     @foreach (var item in Model)
@@ -46,8 +52,22 @@
                 }
             </td>
             <td>
-                @Html.ActionLink("Edit Sub Todo", "EditSubTodo", new { @class = "normal-link", id = item.Id }) |
-                @Html.ActionLink("Delete Sub Todo", "DeleteSubTodo", new { @class = "normal-link", subTodoId = item.Id })
+                <button class="btn btn-primary" style="margin-top:10px; margin-bottom:10px;">
+
+                    <a href="@Url.Action("EditSubTodo", "Home",new { id=item.Id })">
+                        <span class="glyphicon glyphicon-edit link-btn" aria-hidden="true">
+                        </span>
+                    </a>
+                </button>
+
+                <button class="btn btn-danger" style="margin-top:10px; margin-bottom:10px;">
+
+                    <a href="@Url.Action("DeleteSubTodo", "Home",new { subTodoId=item.Id })">
+                        <span class="glyphicon glyphicon-trash link-btn" aria-hidden="true">
+                        </span>
+                    </a>
+                </button>
+
             </td>
 
         </tr>

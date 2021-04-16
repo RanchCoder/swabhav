@@ -1,0 +1,9 @@
+#box-div{
+    display:flex;
+
+}
+
+.flex-div{
+    display:flex;
+    justify-content: space-between;
+}

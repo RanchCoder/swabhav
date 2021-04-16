@@ -1,0 +1,30 @@
+<div [style.height] = "'500px'" [style.width]="'400px'" [style.border]="'2px solid black'" id="box-div">
+    <h1 [style.fontSize.px] = "'40'">Price Calculator App</h1>
+     <div class="flex-div">
+        <label>Price</label> 
+        <input type="number" [(ngModel)]="price">
+     
+
+     </div>
+     <div class="flex-div">
+        <label>Discount</label> 
+        
+        <input type="number" [(ngModel)]="discount">
+     
+     
+
+     </div>
+     <button (click)="GenerateBill()">Calculate</button>
+    <div>
+
+     <div>
+         <h3>COST:</h3></div>
+<div>
+    <h3 [(ngModel)] = "finalBill">{{finalBill}}</h3>
+</div>
+    </div>
+
+
+
+    </div>
+    

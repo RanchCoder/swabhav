@@ -9,7 +9,6 @@ namespace TodoListMVC.Repository
 {
     interface ITodoListRepository
     {
-
         List<TodoList> GetTodoLists(string username);
         bool AddATodo(TodoList todo,string userName);
         TodoList GetTodoById(int id);
