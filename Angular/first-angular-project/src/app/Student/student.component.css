@@ -1,0 +1,29 @@
+table, th ,td{
+    border: 1px solid black;
+    padding:10px;
+    border-collapse:collapse;
+  }
+
+  table{
+      width:50%;
+  }
+ 
+table tr{
+    padding:10px;
+}
+.btn{
+    padding:10px;
+    height:50px;
+    margin-right:10px;
+    margin-bottom:30px;
+    border:none;
+    font-size: 20px;
+}
+
+.btn-success{
+    background: aquamarine;
+}
+
+.btn-primary{
+    background:bisque;
+}

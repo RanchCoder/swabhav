@@ -1,5 +1,14 @@
 <input type="text" [(ngModel)]="username">
 <input type="text" [(ngModel)]="password">
 
-<h3>{{username}}</h3>
-<h3>{{password}}</h3>
+
+<h3>USERNAME : {{username}}</h3>
+<h3>PASSWORD : {{password}}</h3>
+
+<input type="text" (ngModel)="address" (ngModelChange)="fetchAddress($event)" placeholder="address">
+<br/>
+<input type="text" (ngModel)="passport" (ngModelChange)="fetchPassport($event)" placeholder="passport">
+
+
+<h3>Address : {{address}}</h3>
+<h3>PASSPORT : {{passport}}</h3>

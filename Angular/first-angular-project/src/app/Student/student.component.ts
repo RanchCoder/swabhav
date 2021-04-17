@@ -3,6 +3,7 @@ import {IStudent} from './IStudent';
 @Component({
     selector: 'student-data',
     templateUrl: './student.component.html',
+    styleUrls:['./student.component.css']
 })
 
 
@@ -14,6 +15,7 @@ export class StudentComponent {
                sname:"vishal",
                sage:15,
                cgpa:4.5,
+               
          },
          {             
             sname:"prem",
@@ -21,6 +23,17 @@ export class StudentComponent {
             cgpa:4.5,
       },
         ];
+     }
+
+     public loadParticularStudent(name:string,age:string,cgpa:string){
+
+       this.students = [{
+         sname:name,
+         sage:parseInt(age),
+         cgpa:parseInt(cgpa)
+       }];
+
+
      }
   }
   

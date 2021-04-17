@@ -10,11 +10,14 @@ import { CalculatorComponent } from './PriceCalculator/calculator.component';
 import { BananaComponent } from './BananaInTheBox/banana.component';
 import { PropertyComponent } from './Binding/propertyBinding.component';
 import { FormsModule } from '@angular/forms';
+import { FormComponent } from './FormController/form.component';
 @NgModule({
   declarations: [
    AppComponent,
    PropertyComponent,
-   BananaComponent
+   BananaComponent,
+   StudentComponent,
+   FormComponent,
   ],
   imports: [
     BrowserModule,

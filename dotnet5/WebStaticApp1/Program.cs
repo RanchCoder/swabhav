@@ -7,15 +7,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FirstCoreWebApplication
+namespace WebStaticApp1
 {
     public class Program
     {
         public static void Main(string[] args)
         {
-            var builder = CreateHostBuilder(args);
-            var host = builder.Build();
-            host.Run();
+            CreateHostBuilder(args).Build().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

@@ -1,4 +1,39 @@
-<button (click)="loadData()">load</button>
-<ul *ngFor = "let student of students">
-  <li>{{student.sname}} {{student.sage}} {{student.cgpa}}</li>
-</ul>
+<button (click)="loadData()" class="btn btn-success">load students</button>
+<button (click)="loadParticularStudent('vishal','15','6.4') " class="btn btn-primary" >load student</button>
+
+<table>
+  <tr>
+    <th>
+       Name
+    </th>
+    <th>
+      age
+    </th>
+    <th>
+      cgpa
+    </th>
+    <th>
+      image
+    </th>
+  </tr>
+  
+  <tr *ngFor = "let student of students">
+    <td>
+      {{student.sname}}
+    </td>
+    <td>
+      {{student.sage}} 
+        </td>
+        <td>
+          {{student.cgpa}}
+
+        </td>
+        <td>
+         <img src="''./image/th.jpg'">
+        </td>
+  </tr>
+  
+</table>
+
+
+
