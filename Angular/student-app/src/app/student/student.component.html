@@ -1,0 +1,28 @@
+<p>student works!</p>
+
+
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">name</th>
+      <th scope="col">age</th>
+      <th scope="col">email</th>
+      <th scope="col">rollNumber</th>
+      
+      <th scope="col">isMale</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let student of studentData">
+      <td>
+        {{student.name}}
+      </td>
+      <td>{{student.age }}</td>
+      <td>{{student.email}}</td>
+      
+      <td>{{student.rollNo }}</td>
+      <td>{{student.isMale}}</td>
+    </tr>
+    </tbody>
+  </table>

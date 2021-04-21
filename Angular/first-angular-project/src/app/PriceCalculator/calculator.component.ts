@@ -7,8 +7,12 @@ import {Component} from '@angular/core';
 
 export class CalculatorComponent{
     cost:number = 0;
-    PriceCalculator(price:any,discount:any){
+    date:number = Date.now();
+    PriceCalculator(price:any,discount:any):number{
         this.cost = (parseInt(price) * parseFloat(discount)) + parseInt(price);
         return this.cost;
     }
+
 }
+
+

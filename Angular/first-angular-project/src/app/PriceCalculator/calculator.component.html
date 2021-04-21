@@ -14,6 +14,10 @@
      <button (click)="PriceCalculator(price.value,discount.value)">Calculate</button>
      <div>
          <h3>COST:</h3></div>
-<div [innerText] = "cost" [style.text.align]="'center'"></div>
+<div  [style.text.align]="'center'">
+
+   <h3>{{cost | currency:"USD":true}}</h3>
+   <h3>{{date | date:'d/M/y'}}</h3>
+</div>
 </div>
 

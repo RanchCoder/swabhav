@@ -23,6 +23,7 @@ namespace EFCoreConsoleApp
 
         public void AddStudent()
         {
+
             Console.Write("\nStudent Name : " );
             string name = Console.ReadLine();
 
@@ -44,6 +45,7 @@ namespace EFCoreConsoleApp
 
         public bool UpdateStudent()
         {
+            Console.WriteLine("\nUpdate Student Record");
             try
             {
                 Console.Write("\nStudent Id : ");
@@ -71,6 +73,8 @@ namespace EFCoreConsoleApp
 
         public bool DeleteStudent()
         {
+
+            Console.WriteLine("\nDelete Student Record");
             try
             {
                 Console.Write("\nEnter Student Id for which you wish to delete record : ");

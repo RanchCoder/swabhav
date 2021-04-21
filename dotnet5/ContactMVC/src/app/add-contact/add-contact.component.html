@@ -1,0 +1,46 @@
+<div *ngIf="responseMessage" class="alert alert-success alert-dismissible">
+    <a [routerLink]="['/contacts']" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+
+   {{responseMessage}}
+</div>
+
+
+<div class="container">
+    <h3>Add Contact</h3>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+             <form [formGroup]="contactAddForm" (ngSubmit)="onSubmit()">
+                 <div class="form-group">
+                     <label>Firstname</label>
+                     <input type="text" class="form-control" formControlName="FirstName">
+                     <div *ngIf="contactAddForm.controls['FirstName'].hasError('required') && contactAddForm.controls['FirstName'].touched" class="alert alert-danger">
+                         Please enter your first name
+                     </div>
+                 </div>
+                 
+                    <div class="form-group">
+                        <label>Lastname</label>
+                        <input type="text" class="form-control" formControlName="LastName">
+                        <div *ngIf="contactAddForm.controls['LastName'].hasError('required') && contactAddForm.controls['LasttName'].touched" class="alert alert-danger">
+                            Please enter your last name
+                        </div>
+                    </div>
+
+                
+              
+                    <div class="form-group">
+                        <label>Phone no.</label>
+                        <input type="text" class="form-control" formControlName="PhoneNumber">
+                        <div *ngIf="contactAddForm.controls['PhoneNumber'].hasError('pattern') && contactAddForm.controls['PhoneNumber'].touched" class="alert alert-danger">
+                            Please enter your Phone Number in numerics
+                        </div>
+                    </div>
+
+                
+                <button type="submit" [disabled]="!contactAddForm.valid" class="btn btn-primary">Submit</button>
+             </form>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>

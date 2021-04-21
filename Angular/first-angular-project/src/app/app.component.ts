@@ -8,5 +8,6 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'first-angular-project';
   message:string = "hello angular";
+  
 }
 

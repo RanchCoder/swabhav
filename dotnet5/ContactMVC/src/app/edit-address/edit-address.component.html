@@ -1,0 +1,92 @@
+<div *ngIf="responseMessage" class="alert alert-success alert-dismissible">
+    <a [routerLink]="['/contacts']" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+
+   {{responseMessage}}
+</div>
+
+<div class="container">
+  <h3>Edit Address</h3>
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label>Id</label>
+          <input
+            type="text"
+            [disabled]="true"
+            [(ngModel)]="addressData.id"
+            class="form-control"
+            formControlName="Id"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>City</label>
+          <input
+            type="text"
+            [(ngModel)]="addressData.city"
+            class="form-control"
+            formControlName="City"
+          />
+          <div
+            *ngIf="
+              editForm.controls['City'].hasError('required') &&
+              editForm.controls['City'].touched
+            "
+            class="alert alert-danger"
+          >
+            Please enter city
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>State</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="addressData.state"
+            formControlName="State"
+          />
+          <div
+            *ngIf="
+              editForm.controls['State'].hasError('required') &&
+              editForm.controls['State'].touched
+            "
+            class="alert alert-danger"
+          >
+            Please enter state
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Country</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="addressData.country"
+            formControlName="Country"
+          />
+          <div
+            *ngIf="
+              editForm.controls['LastName'].hasError('required') &&
+              editForm.controls['LasttName'].touched
+            "
+            class="alert alert-danger"
+          >
+            Please enter country name
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          [disabled]="!editForm.valid"
+          class="btn btn-primary"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>

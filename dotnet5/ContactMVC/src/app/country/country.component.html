@@ -1,0 +1,26 @@
+<p>country works!</p>
+
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Region</th>
+      
+      <th scope="col">Capital</th>
+      <th scope="col">Population</th>
+      <th scope="col">flag</th>
+    </tr>
+    </thead>
+    <tbody>
+       <tr *ngFor="let country of countryData">
+           <td>{{country.name}}</td>
+           <td>{{country.region}}</td>
+           
+           <td>{{country.capital}}</td>
+           <td>{{country.population}}</td>
+           <td><img src={{country.flag}}></td>
+           
+       </tr>
+    </tbody>
+  </table>
