@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+
+.main-container{
+    width:90%;
+    margin:0 auto;
+}
+
+.panel-body{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items:center;
+}
+
+.panel-body img{
+    
+    position:relative;
+    width:60%;
+    height:300px;
+}

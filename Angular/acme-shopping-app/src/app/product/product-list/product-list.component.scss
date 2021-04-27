@@ -1,0 +1,21 @@
+.panel-body{
+    align-items:flex-start;
+}
+.panel-input-content{
+    position:relative;
+    width:30%;
+    display:flex;
+    justify-content: space-evenly;
+}
+.main-content{
+    position:relative;
+    width:100%;
+}
+.product-img{
+    position:relative;
+    width:80px;
+    height:60px;
+}
+a{
+    cursor:pointer;
+}
