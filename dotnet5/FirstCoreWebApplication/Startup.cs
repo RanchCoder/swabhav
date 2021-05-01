@@ -12,6 +12,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using FirstCoreWebApplication.Data;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace FirstCoreWebApplication
 {
@@ -36,6 +41,36 @@ namespace FirstCoreWebApplication
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "FirstCoreWebApplication", Version = "v1" });
             });
+
+            services.AddCors(options => {
+                options.AddPolicy("EnableCors", builder =>
+                {
+                    builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                });
+                });
+
+            services.AddAuthentication(opt =>
+            {
+                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+                .AddJwtBearer(options=> {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+
+                        ValidIssuer = "http://localhost:4200",
+                        ValidAudience = "http://localhost:4200",
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SuperSecretKey390293"))
+                    };
+                })
+                ;
+
+            services.AddDbContext<FirstCoreWebApplicationContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("FirstCoreWebApplicationContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,7 +86,8 @@ namespace FirstCoreWebApplication
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseAuthentication();
+            app.UseCors("EnableCors");
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

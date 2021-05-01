@@ -8,14 +8,17 @@ using System.Threading.Tasks;
 
 namespace ContactApp.Domain.Models
 {
-    public class User
+    public class User : BaseEntity
     {
-        [Key]
-        public Guid UserId { get; set; }
+        
         public string Username { get; set; }
         
+        public string Email { get; set; }
         public string Password { get; set; }
 
+        public string Role { get; set; }
+        
+        public string Token { get; set; }
         [JsonIgnore]
         public virtual Tenant Tenant { get; set; }
         public Guid TenantId { get; set; }

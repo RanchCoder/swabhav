@@ -7,14 +7,12 @@ using System.Text.Json.Serialization;
 
 namespace ContactApp.Domain.Models
 {
-    public class Contact
+    public class Contact : BaseEntity
     {
         public Contact()
         {
             Addresses =  new List<Address>();
         }
-        [Key]
-        public Guid Id { get; set; }
         
         [Required]
         public string FirstName { get; set; }

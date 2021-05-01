@@ -1,12 +1,11 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FirstCoreWebApplication.Controllers
+namespace GenericRepositoryDemo.Controllers
 {
     [ApiController]
     [Route("[controller]")]
@@ -25,7 +24,6 @@ namespace FirstCoreWebApplication.Controllers
         }
 
         [HttpGet]
-        [Authorize]
         public IEnumerable<WeatherForecast> Get()
         {
             var rng = new Random();

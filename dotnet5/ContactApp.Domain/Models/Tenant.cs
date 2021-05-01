@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace ContactApp.Domain.Models
 {
-    public class Tenant
+    public class Tenant : BaseEntity
     {
-        [Key]
-        public Guid TenantId { get; set; }
-        public string TenantName { get; set; }
+        
 
-
+        public string CompanyName { get; set; }
+        public long CompanyStrength { get; set; }
+       
         public virtual List<User> Users { get; set; }
     }
 }

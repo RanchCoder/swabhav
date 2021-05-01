@@ -18,7 +18,7 @@ namespace ContactApp.Domain.DTO
         [Required]
         public string Country { get; set; }
 
-        [Required]
-        public Guid ContactID { get; set; }
+       
+       
     }
 }
