@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {CountryApiService} from '../country-api.service';
+import {CountryApiService} from '../Services/country-api.service';
 @Component({
   selector: 'app-country',
   templateUrl: './country.component.html',
