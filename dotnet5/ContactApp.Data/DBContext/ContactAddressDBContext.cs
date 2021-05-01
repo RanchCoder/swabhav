@@ -24,8 +24,8 @@ namespace ContactApp.Data.DBContext
 
             modelBuilder.Entity<Address>().Property(x => x.Id).HasDefaultValueSql("NEWID()");
             modelBuilder.Entity<Contact>().Property(x => x.Id).HasDefaultValueSql("NEWID()");
-            modelBuilder.Entity<Tenant>().Property(x => x.TenantId).HasDefaultValueSql("NEWID()");
-            modelBuilder.Entity<User>().Property(x => x.UserId).HasDefaultValueSql("NEWID()");
+            modelBuilder.Entity<Tenant>().Property(x => x.Id).HasDefaultValueSql("NEWID()");
+            modelBuilder.Entity<User>().Property(x => x.Id).HasDefaultValueSql("NEWID()");
 
         }
 
