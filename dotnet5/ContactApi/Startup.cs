@@ -14,6 +14,11 @@ using ContactApp.Data.DBContext;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 using ContactApp.Data.Repository;
+using ContactApp.Domain.Models;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using ContactApi.Token;
 
 namespace ContactApi
 {
@@ -29,15 +34,25 @@ namespace ContactApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
 
-            services.AddCors(cors=> {
-                cors.AddPolicy("AllowOrigin",options=>options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", builder =>
+                {
+                    builder.WithOrigins("http://localhost:4200").AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowCredentials();
+                });
             });
 
-           
 
+            services.AddSingleton<ICustomTokenManager, CustomTokenManager>();
             services.AddControllers();
-            services.AddTransient<IContactRepository, ContactRepository>();
+            services.AddScoped<JwtAuthorization>();
+            services.AddSingleton<EncryptorDecryptor>();
+            services.AddTransient(typeof(IAsyncContactRepository<>), typeof(AsyncContactRepository<>));
+            
             services.AddDbContext<ContactAddressDBContext>(opt =>
               opt.UseSqlServer(Configuration.GetConnectionString("ContactAddressDBContext")));
 
@@ -52,7 +67,7 @@ namespace ContactApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseCors(options=>options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -61,7 +76,8 @@ namespace ContactApi
             }
 
             app.UseRouting();
-
+            app.UseCors("CorsPolicy");
+           
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

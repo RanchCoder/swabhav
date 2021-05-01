@@ -8,7 +8,7 @@ namespace ContactApi.DTO
 {
     public class ContactDTO
     {
-        public Guid Id { get; set; }
+        
        
         [Required]
         public string FirstName { get; set; }

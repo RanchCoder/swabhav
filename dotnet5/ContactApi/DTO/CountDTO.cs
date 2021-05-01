@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace ContactApi.DTO
 {
-    public class TenantDTO
+    public class CountDTO
     {
-        [Required]
-        public string CompanyName { get; set; }
+      
+        public int UserCount { get; set; }
+        public int ContactCount { get; set; }
+
+        public int AddressCount { get; set; }
+
         public long CompanyStrength { get; set; }
     }
 }

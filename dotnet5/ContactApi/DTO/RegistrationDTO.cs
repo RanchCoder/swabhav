@@ -6,10 +6,22 @@ using System.Threading.Tasks;
 
 namespace ContactApi.DTO
 {
-    public class TenantDTO
+    public class RegistrationDTO
     {
         [Required]
         public string CompanyName { get; set; }
+
+        [Required]
         public long CompanyStrength { get; set; }
+
+        [Required]
+        public string Password { get; set; }
+
+        [Required]
+        public string Username { get; set; }
+
+        [Required]
+        public string CompanyEmail { get; set; }
+        
     }
 }
