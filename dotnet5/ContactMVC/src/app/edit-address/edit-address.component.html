@@ -1,7 +1,8 @@
 <div *ngIf="responseMessage" class="alert alert-success alert-dismissible">
-    <a [routerLink]="['/contacts']" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  {{responseMessage}}
+  <a [routerLink]="['/contacts']" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 
-   {{responseMessage}}
+ 
 </div>
 
 <div class="container">

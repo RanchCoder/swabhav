@@ -1,0 +1,187 @@
+<div *ngIf="responseMessage" class="alert alert-success alert-dismissible">
+  <a [routerLink]="['/login']" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+
+ user registration successful
+</div>
+
+
+<div class="page-title">
+  <h3>Registration</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-4"></div>
+
+  <div class="col-md-4 card-auth">
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Company Name</label>
+        <input
+          type="text"
+          (change)="checkCompanyName($event)"
+          class="form-control"
+          formControlName="CompanyName"
+        />
+      </div>
+      <div
+        *ngIf="
+          registrationForm.controls['CompanyName'].hasError('required') &&
+          registrationForm.controls['CompanyName'].touched &&
+          !registrationForm.controls['CompanyName'].errors?.notAvailable
+        "
+        class="alert alert-danger"
+      >
+        Please enter company name
+      </div>
+
+      <div
+        *ngIf="registrationForm.controls['CompanyName'].errors?.notAvailable"
+        class="alert alert-danger"
+      >
+        company name not available
+      </div>
+      <div
+        *ngIf="registrationForm.controls['CompanyName'].invalid && registrationForm.controls['CompanyName'].touched"
+        class="alert alert-danger"
+      >
+      0-9 , special characters + - / % etc are not allowed,
+      minimum of 8 characters required
+      </div>
+
+      <div class="form-group">
+        <label>Company Strength</label>
+        <input
+          type="number"
+          class="form-control"
+          formControlName="CompanyStrength"
+        />
+      </div>
+      <div
+        *ngIf="
+          registrationForm.controls['CompanyStrength'].hasError('required') &&
+          registrationForm.controls['CompanyStrength'].touched
+        "
+        class="alert alert-danger"
+      >
+        Please enter company strength
+      </div>
+
+      <div class="form-group">
+        <label>user email</label>
+        <input
+          type="email"
+          class="form-control"
+          formControlName="CompanyEmail"
+          (change)="validateEmail($event)"
+        />
+      </div>
+      <div
+        *ngIf="
+          registrationForm.controls['CompanyEmail'].hasError('required') &&
+          registrationForm.controls['CompanyEmail'].touched && 
+          !registrationForm.controls['CompanyEmail'].notAvailable
+        "
+        class="alert alert-danger"
+      >
+        Please enter Company Email
+      </div>
+      <div
+        *ngIf="registrationForm.controls['CompanyEmail'].errors?.email"
+        class="alert alert-danger"
+      >
+        enter valid email
+      </div>
+      <div
+        *ngIf="registrationForm.controls['CompanyEmail'].errors?.notAvailable"
+        class="alert alert-danger"
+      >
+       email is not available
+      </div>
+
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" class="form-control" formControlName="Username" />
+      </div>
+      <div
+        *ngIf="
+          registrationForm.controls['Username'].hasError('required') &&
+          registrationForm.controls['Username'].touched
+        "
+        class="alert alert-danger"
+      >
+        Please enter Username
+      </div>
+      <div
+      *ngIf="registrationForm.controls['Username'].invalid && registrationForm.controls['Username'].touched"
+      class="alert alert-danger"
+    >
+      0-9 , special characters + - / % etc are not allowed
+      should have minimum of 8 characters
+    </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input
+          type="password"
+          
+          class="form-control"
+          formControlName="Password"
+        />
+      </div>
+        <div
+          *ngIf="
+          registrationForm.controls['Password'].hasError('required') &&
+          registrationForm.controls['Password'].touched
+          "
+          class="alert alert-danger"
+        >
+          Please enter password
+        </div>
+
+        <div class="form-group">
+          <label>Confirm Password</label>
+          <input
+            type="password"
+            
+            class="form-control"
+            formControlName="ConfirmPassword"
+            (keyup)="validatePassword($event)"
+          />
+        </div>
+          <div
+            *ngIf="
+            registrationForm.controls['ConfirmPassword'].hasError('required') &&
+            registrationForm.controls['ConfirmPassword'].touched
+            "
+            class="alert alert-danger"
+          >
+            Please re-enter password
+          </div>
+          <div
+          *ngIf="
+          registrationForm.controls['ConfirmPassword'].errors?.notMatching
+          "
+          class="alert alert-danger"
+        >
+          passwords do not match
+        </div>
+
+          
+
+        
+     
+
+      
+
+
+      <button
+        type="submit"
+        [disabled]="!registrationForm.valid"
+        class="btn btn-primary"
+      >
+        register
+      </button>
+    </form>
+  </div>
+  <div class="col-md-4"></div>
+</div>

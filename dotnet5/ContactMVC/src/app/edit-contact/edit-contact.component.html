@@ -5,12 +5,12 @@
 </div>
 
 
-<div class="container">
+<div class="container title-text">
     <h3>Edit Contact</h3>
     <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-8">
-             <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+             <form [formGroup]="editForm" *ngIf="editForm" (ngSubmit)="onSubmit()">
 
                 <div class="form-group">
                     <label>Id</label>
