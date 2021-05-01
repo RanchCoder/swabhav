@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ContactApp.Data.Migrations
 {
     [DbContext(typeof(ContactAddressDBContext))]
-    [Migration("20210419111146_tenant-user-contact-address-v1")]
-    partial class tenantusercontactaddressv1
+    [Migration("20210429025229_contact-address-v1")]
+    partial class contactaddressv1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -55,9 +55,11 @@ namespace ContactApp.Data.Migrations
                         .HasDefaultValueSql("NEWID()");
 
                     b.Property<string>("FirstName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("PhoneNumber")
@@ -75,36 +77,48 @@ namespace ContactApp.Data.Migrations
 
             modelBuilder.Entity("ContactApp.Domain.Models.Tenant", b =>
                 {
-                    b.Property<Guid>("TenantId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
                         .HasDefaultValueSql("NEWID()");
 
-                    b.Property<string>("TenantName")
+                    b.Property<string>("CompanyName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("TenantId");
+                    b.Property<long>("CompanyStrength")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
 
                     b.ToTable("Tenants");
                 });
 
             modelBuilder.Entity("ContactApp.Domain.Models.User", b =>
                 {
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
                         .HasDefaultValueSql("NEWID()");
 
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Role")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("TenantId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Token")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Username")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("UserId");
+                    b.HasKey("Id");
 
                     b.HasIndex("TenantId");
 

@@ -1,6 +1,6 @@
 <div class="container title-text">
   <h5>Contacts</h5>
-<button class="btn btn-success" [routerLink]="['/addcontact']">Add</button>
+<button class="btn btn-success" [routerLink]="['/addContact',userId]">Add</button>
 <table class="table table-striped">
     <thead>
     <tr>
@@ -20,11 +20,11 @@
            <td>{{contact.firstName}}</td>
            <td>{{contact.lastName}}</td>
            <td>{{contact.phoneNumber}}</td>
-           <td><button class="btn btn-primary" [routerLink]="['/address',contact.id]">show</button></td>
+           <td><button class="btn btn-primary" [routerLink]="['/address',userId,contact.id]">show</button></td>
            
-           <td><button class="btn btn-warning" [routerLink]="['/edit-contact',contact.id]">edit</button></td>
+           <td><button class="btn btn-warning" [routerLink]="['/edit-contact',userId,contact.id]">edit</button></td>
            
-           <td><button class="btn btn-danger" [routerLink]="['/delete-contact',contact.id]">delete</button></td>
+           <td><button class="btn btn-danger" [routerLink]="['/delete-contact',userId,contact.id]">delete</button></td>
        </tr>
     </tbody>
   </table>

@@ -17,7 +17,7 @@ namespace ContactApi.DTO
         [Required]
         public string Country { get; set; }
 
-        [Required]
-        public Guid ContactID { get; set; }
+       
+      
     }
 }

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {ContactAddressService} from '../contact-address.service';
 import {AddressService} from '../address.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-show-contacts',
@@ -11,27 +12,39 @@ import {Router} from '@angular/router';
 })
 export class ShowContactsComponent implements OnInit {
 
-  constructor(private contactService :ContactAddressService,private _addressService : AddressService,private _router : Router) {
+  constructor(private contactService :ContactAddressService,private _addressService : AddressService,private activateRoute : ActivatedRoute,private toastr : ToastrService) {
 
    }
   
-  tenantId:any = this.contactService.tenantId;
-  userId : any = this.contactService.userId;
   contactId!:string;
   contactList : any = [];
-  
+  userId :any;
   ngOnInit(): void {
-    this.fetchContactList();
+    this.activateRoute.paramMap.subscribe((param:ParamMap)=>{
+      this.userId = param.get('userId');
+      console.log(this.userId);
+      this.fetchContactList(this.userId);
+    })
+    
   }
   
-  fetchContactList(){
-    this.contactService.getContactList().subscribe(data=>{
-      this.contactList = data;
-    });
+  fetchContactList(userId){
+    this.contactService.getContactList(userId).subscribe(data=>{
+      if(data.length > 0){
+        this.contactList = data;
+    
+      }else{
+        this.toastr.success("No contacts to show", "Add new contacts");
+      }
+    },
+    err=>{
+      this.toastr.error("Something went wrong");
+    }
+    );
   }
 
   fetchAddress(id:string){
     this.contactId = id;
-    this._router.navigate(['/address/',this.contactId]);
+  //  this._router.navigate(['/address/',this.contactId]);
   }
 }

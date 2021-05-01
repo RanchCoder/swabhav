@@ -1,7 +1,8 @@
 
 <div class="container title-text">
     <h5>Address for contact</h5>
-  <button class="btn btn-success" [routerLink]="['/addAddress']">Add</button>
+    <button class="btn btn-success" [routerLink]="['/addAddress',userId,contactId]">Add</button>
+  <!-- <button class="btn btn-success" [routerLink]="['/addAddress',contactId]">Add</button> -->
   <table class="table table-striped">
       <thead>
       <tr>
@@ -20,9 +21,9 @@
              <td>{{address.city}}</td>
              <td>{{address.state}}</td>
              <td>{{address.country}}</td>
-             <td><button class="btn btn-warning" (click)="editAddress(address)">edit</button></td>
+             <td><button class="btn btn-warning" [routerLink]="['/editAddress',userId,contactId,address.id]">edit</button></td>
              
-             <td><button class="btn btn-danger" (click)="deleteAddress(address)">delete</button></td>
+             <td><button class="btn btn-danger" (click)="deleteAddress(userId,contactId,address.id)">delete</button></td>
          </tr>
       </tbody>
     </table>

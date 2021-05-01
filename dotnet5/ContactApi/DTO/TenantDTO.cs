@@ -9,6 +9,7 @@ namespace ContactApi.DTO
     public class TenantDTO
     {
         [Required]
-        public string TenantName { get; set; }
+        public string CompanyName { get; set; }
+        public long CompanyStrength { get; set; }
     }
 }

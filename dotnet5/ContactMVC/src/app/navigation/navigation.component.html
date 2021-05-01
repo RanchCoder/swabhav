@@ -1,0 +1,20 @@
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header navbar-title" >
+        <a class="navbar-brand" [routerLink]="['/dashboard']" *ngIf="_authService.loggedIn()" >
+         {{companyName}}
+        </a>
+      </div>
+       
+
+      <ul class="nav navbar-nav navbar-right" >
+          <li><a *ngIf="!_authService.loggedIn()" routerLink="/login">Login</a></li>
+          <li><a *ngIf="!_authService.loggedIn()" routerLink="/registration">Register</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right" >
+        <li><a href="#" *ngIf="_authService.loggedIn()"><span class="glyphicon glyphicon-user" aria-hidden="true" style="margin-right:2px;"></span>{{userName}}</a></li>
+    
+        <li><a  *ngIf="_authService.loggedIn()" (click)="_authService.isLoggedOut()">Logout</a></li>
+    </ul>
+    </div>
+  </nav>

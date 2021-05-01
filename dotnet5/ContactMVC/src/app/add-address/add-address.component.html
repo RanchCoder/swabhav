@@ -1,0 +1,42 @@
+
+
+
+<div class="container title-text">
+    <h3>Add Address</h3>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+             <form [formGroup]="addressForm" (ngSubmit)="onSubmit()">
+                 <div class="form-group">
+                     <label>City</label>
+                     <input type="text" class="form-control" formControlName="City">
+                     <div *ngIf="addressForm.controls['City'].hasError('required') && addressForm.controls['City'].touched" class="alert alert-danger">
+                         Please enter contact's City
+                     </div>
+                 </div>
+                 
+                    <div class="form-group">
+                        <label>State</label>
+                        <input type="text" class="form-control" formControlName="State">
+                        <div *ngIf="addressForm.controls['State'].hasError('required') && addressForm.controls['State'].touched" class="alert alert-danger">
+                            Please enter contact's state
+                        </div>
+                    </div>
+
+                
+              
+                    <div class="form-group">
+                        <label>Country</label>
+                        <input type="text" class="form-control" formControlName="Country">
+                        <div *ngIf="addressForm.controls['Country'].hasError('required') && addressForm.controls['Country'].touched" class="alert alert-danger">
+                            Please enter contact's country
+                        </div>
+                    </div>
+
+                
+                <button type="submit" [disabled]="!addressForm.valid" class="btn btn-primary">Submit</button>
+             </form>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
