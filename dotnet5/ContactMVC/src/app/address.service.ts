@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Address} from './DTO/Address';
+
+import {environment} from '../environments/environment.prod';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,7 +15,7 @@ export class AddressService {
    }
 
    readonly tenantId : any = localStorage.getItem('tenantId');
-   readonly ApiUrl = `https://tenantcontactmgmtapi.azurewebsites.net/api/v1/tenants/${this.tenantId}/users`;
+   readonly ApiUrl = `${environment.baseUrl}/${this.tenantId}/users`;
 
    getAddressList(userId,contactId):Observable<Address[]>{
     return this.http.get<any>(this.ApiUrl+`/${userId}/contacts/${contactId}/addresses`);

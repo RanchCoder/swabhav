@@ -8,6 +8,7 @@ import { Registration } from '../DTO/Registration';
 import { SuperAdminLoginDTO } from '../DTO/SuperAdminLogin';
 import { Tenant } from '../DTO/Tenant';
 import { UserToken } from '../DTO/UserToken';
+import {environment} from '../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class AuthService {
 
   constructor(private http : HttpClient,private _router : Router,private jwtHelper : JwtHelperService) { }
 
-  readonly ApiUrl = `https://tenantcontactmgmtapi.azurewebsites.net/api/v1/tenants`;
+  readonly ApiUrl = environment.baseUrl;
 
   validateCompanyName(companyName:any):Observable<any>{
     return this.http.get<any>(this.ApiUrl+`/companyIsUnique/${companyName}`);

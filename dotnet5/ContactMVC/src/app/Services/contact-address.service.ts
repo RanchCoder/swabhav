@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+
+import {environment} from '../../environments/environment.prod';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,7 +14,7 @@ export class ContactAddressService {
     
   }
   readonly tenantId : any = localStorage.getItem('tenantId');
-  readonly ApiUrl = `https://contact-api.azurewebsites.net/api/v1/tenants/${this.tenantId}/users`;
+  readonly ApiUrl = `${environment.baseUrl}/${this.tenantId}/users`;
  
   getContactList(userId:any):Observable<any[]>{
     return this.http.get<any>(this.ApiUrl+`/${userId}/contacts`);

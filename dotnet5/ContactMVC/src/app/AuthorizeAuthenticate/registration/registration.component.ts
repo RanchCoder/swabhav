@@ -63,6 +63,8 @@ export class RegistrationComponent implements OnInit {
            
            this.toastr.error("Company name not avialable","ERROR");
            this.companyName.setErrors({'notAvailable':true});
+         }else{
+           this.toastr.info("Company name available");
          }
        },
        err=>{

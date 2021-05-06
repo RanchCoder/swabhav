@@ -4,6 +4,8 @@ import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 import { User } from '../DTO/User';
 import { Contact } from '../DTO/Contact';
+
+import {environment} from '../../environments/environment.prod';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,7 +14,7 @@ export class AdminUserService {
 
   constructor(private _http:HttpClient,private _router : Router) { }
   
-  readonly ApiUrl = `https://tenantcontactmgmtapi.azurewebsites.net/api/v1/tenants`;
+  readonly ApiUrl = environment.baseUrl;
  
   readonly tenantId : any = localStorage.getItem('tenantId');
   readonly userId : any = localStorage.getItem('userId');
