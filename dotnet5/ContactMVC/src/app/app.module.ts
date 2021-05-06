@@ -8,31 +8,33 @@ import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 //import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // import { ViewAddressComponent } from './view-address/view-address.component';
- import { EditAddressComponent } from './Entities/Address/edit-address/edit-address.component';
+ import { EditAddressComponent } from './EntityComponents/Address/edit-address/edit-address.component';
 // import { AddAddressComponent } from './add-address/add-address.component';
 // import { DeleteAddressComponent } from './delete-address/delete-address.component';
 import { RegistrationComponent } from './AuthorizeAuthenticate/registration/registration.component';
 import { LoginComponent } from './AuthorizeAuthenticate/login/login.component';
-import { NavigationComponent } from './Entities/navigation/navigation.component';
+import { NavigationComponent } from './EntityComponents/navigation/navigation.component';
 import { AuthGuard } from './AuthorizeAuthenticate/auth.guard';
-import {ViewAddressComponent} from './Entities/Address/view-address/view-address.component';
-import { AdminComponent } from './Entities/Admin_/admin/admin.component';
-import { AddUserComponent } from './Entities/User/add-user/add-user.component';
+import {ViewAddressComponent} from './EntityComponents/Address/view-address/view-address.component';
+import { AdminComponent } from './EntityComponents/Admin_/admin/admin.component';
+import { AddUserComponent } from './EntityComponents/User/add-user/add-user.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {ShowContactsComponent} from './Entities/Contact/show-contacts/show-contacts.component';
-import {EditContactComponent} from './Entities/Contact/edit-contact/edit-contact.component';
-import {AddAddressComponent} from './Entities/Address/add-address/add-address.component';
-import { AddContactComponent} from './Entities/Contact/add-contact/add-contact.component';
+import {ShowContactsComponent} from './EntityComponents/Contact/show-contacts/show-contacts.component';
+import {EditContactComponent} from './EntityComponents/Contact/edit-contact/edit-contact.component';
+import {AddAddressComponent} from './EntityComponents/Address/add-address/add-address.component';
+import { AddContactComponent} from './EntityComponents/Contact/add-contact/add-contact.component';
 import { ToastrModule } from 'ngx-toastr';
-import { DeleteContactComponent } from './Entities/Contact/delete-contact/delete-contact.component';
-import { EditUserComponent } from './Entities/User/edit-user/edit-user.component';
-import { AdminDashboardComponent } from './Entities/Admin_/admin-dashboard/admin-dashboard.component';
+import { DeleteContactComponent } from './EntityComponents/Contact/delete-contact/delete-contact.component';
+import { EditUserComponent } from './EntityComponents/User/edit-user/edit-user.component';
+import { AdminDashboardComponent } from './EntityComponents/Admin_/admin-dashboard/admin-dashboard.component';
 //import { NumbersapiComponent } from './numbersapi/numbersapi.component';
 //import { CountryComponent } from './country/country.component';
 //import { CountryApiService } from './country-api.service';
 import {TokenInterceptorService} from './AuthorizeAuthenticate/token-interceptor.service';
 
 import {JwtModule} from '@auth0/angular-jwt';
+import { SuperAdminComponent } from './EntityComponents/super-admin/super-admin.component';
+import { SuperAdminLoginComponent } from './AuthorizeAuthenticate/super-admin-login/super-admin-login.component';
 
 export function tokenGetter(){
   
@@ -58,7 +60,9 @@ export function tokenGetter(){
     AddAddressComponent,
     EditAddressComponent,
     EditUserComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    SuperAdminComponent,
+    SuperAdminLoginComponent
   
   ],
   imports: [
@@ -71,7 +75,7 @@ export function tokenGetter(){
     JwtModule.forRoot({
       config:{
         tokenGetter:tokenGetter,
-        allowedDomains: ["localhost:5001","localhost:58500"],
+        allowedDomains: ["localhost:5001","localhost:58500","contact-api.azurewebsites.net"],
         
       
       },

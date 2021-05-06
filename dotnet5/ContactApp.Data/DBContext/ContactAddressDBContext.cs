@@ -18,6 +18,8 @@ namespace ContactApp.Data.DBContext
         public DbSet<Tenant> Tenants { get; set; }
         public DbSet<User> Users { get; set; }
 
+        public DbSet<SuperAdmin> SuperAdmins { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -26,7 +28,7 @@ namespace ContactApp.Data.DBContext
             modelBuilder.Entity<Contact>().Property(x => x.Id).HasDefaultValueSql("NEWID()");
             modelBuilder.Entity<Tenant>().Property(x => x.Id).HasDefaultValueSql("NEWID()");
             modelBuilder.Entity<User>().Property(x => x.Id).HasDefaultValueSql("NEWID()");
-
+            modelBuilder.Entity<User>().Property(x=>x.Id).HasDefaultValueSql("NEWID()");
         }
 
     }

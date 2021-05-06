@@ -72,17 +72,18 @@ export class LoginComponent implements OnInit {
 
        data=>{
         const token = (<any> data).token;
-         console.log(token);
+         
          localStorage.setItem("jwt",token);
          var tokenPayLoad = this.jwtHelper.decodeToken(token);
-         
+         console.log("TOKEN PAY LOAD ++++++++++++++++++++++++++++++++++");
+         console.log(tokenPayLoad);
          var userRole = tokenPayLoad.role;
          if(userRole == 'Admin'){
                         window.location.replace('/dashboard');
           }
           else if(userRole == 'User'){
               console.log('yes user');
-              this._router.navigateByUrl(`/showContacts/${tokenPayLoad.userId}`);
+              this._router.navigateByUrl(`/showContacts/${tokenPayLoad.id}`);
           }else{
                 console.log('no body');
           }

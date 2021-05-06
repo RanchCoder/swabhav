@@ -23,6 +23,7 @@ namespace ContactApp.Domain.Models
         [Required]
         public long PhoneNumber { get; set; }
 
+        public bool Ratings { get; set; }
 
         public virtual List<Address> Addresses { get; set; }
 

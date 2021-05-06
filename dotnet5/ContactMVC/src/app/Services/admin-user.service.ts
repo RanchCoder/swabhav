@@ -12,10 +12,15 @@ export class AdminUserService {
 
   constructor(private _http:HttpClient,private _router : Router) { }
   
-  readonly ApiUrl = `http://localhost:58500/api/v1/tenants`;
+  readonly ApiUrl = `https://tenantcontactmgmtapi.azurewebsites.net/api/v1/tenants`;
  
   readonly tenantId : any = localStorage.getItem('tenantId');
   readonly userId : any = localStorage.getItem('userId');
+
+  getTenants():Observable<any[]>{
+    return this._http.get<any>(this.ApiUrl);
+  }
+
   getUsers():Observable<any[]>{
     return this._http.get<any>(this.ApiUrl+`/${this.tenantId}/users`);
   }
@@ -48,7 +53,22 @@ export class AdminUserService {
     return this._http.delete(this.ApiUrl+`/${this.tenantId}/users/${userId}`,{'headers':headers,responseType: 'text' as 'json'});
   }
 
+  deleteTenant(tenantId:any):Observable<any>{
+    const headers ={'content-type':'application/json'};
+    
+    return this._http.delete(this.ApiUrl+`/${tenantId}`,{'headers':headers,responseType: 'text' as 'json'});
+  
+
+  }
+
   getCountData():Observable<any>{
     return this._http.get<any>(this.ApiUrl+`/${this.tenantId}/countData`);
   }
+
+  addUserToFavorite(userId:any):Observable<any>{
+    const headers ={'content-type':'application/json'};
+    return this._http.put(this.ApiUrl+`/${this.tenantId}/users/${userId}/favoriteUser`,{'headers':headers});
+  }
+
+
 }

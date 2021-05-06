@@ -5,6 +5,8 @@ import { debounceTime, tap } from 'rxjs/operators';
 import { walkUpBindingElementsAndPatterns } from 'typescript';
 import { AuthService } from '../../Services/auth.service';
 import { Registration } from '../../DTO/Registration';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -13,7 +15,7 @@ import { Registration } from '../../DTO/Registration';
 export class RegistrationComponent implements OnInit {
   countIfEmailIsTaken: number = 1;
 
-  constructor(private httpClient : HttpClient, private authService : AuthService) { }
+  constructor(private httpClient : HttpClient, private authService : AuthService,private _router : Router,private toastr : ToastrService) { }
   companyNameInput :any;
   registrationForm :any;
   responseMessage :any;
@@ -59,7 +61,7 @@ export class RegistrationComponent implements OnInit {
         
          if(dataCount >= this.countIfUsernameIsTaken){
            
-       
+           this.toastr.error("Company name not avialable","ERROR");
            this.companyName.setErrors({'notAvailable':true});
          }
        },
@@ -75,6 +77,7 @@ export class RegistrationComponent implements OnInit {
        this.authService.validateEmail(event.target.value).subscribe(
          dataCount=>{
              if(dataCount >= this.countIfEmailIsTaken){
+              this.toastr.error("Company name not avialable","ERROR");
                this.email.setErrors({'notAvailable':true});
              }
          },
@@ -103,8 +106,17 @@ export class RegistrationComponent implements OnInit {
      registerUser.password = this.registrationForm.value.Password;
      registerUser.companyStrength = this.registrationForm.value.CompanyStrength;
      this.authService.registerUser(registerUser).subscribe(
-     data=>this.responseMessage = data,
-     err=>this.responseMessage = err
+       data=>{
+         if(data != null){
+           this.toastr.success("Successfully registered user");
+           this._router.navigateByUrl(`/login`);
+         }else{
+           this.toastr.warning("cannot register user");
+         }
+       },
+       err=>{
+         this.toastr.error("Something went wrong","ERROR");
+       }
      );
 
    }

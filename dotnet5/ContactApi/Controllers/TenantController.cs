@@ -54,7 +54,7 @@ namespace ContactApi.Controllers
         {
 
 
-            if (tenantId != null)
+            if (tenantId != null && tenantId != "")
             {
                 var usersCount = await _userRepository.CountWhere(user=>user.TenantId == Guid.Parse(tenantId));
                 var contactCount = await _contactRepository.CountWhere(contact=>contact.User.TenantId == Guid.Parse(tenantId));
@@ -76,10 +76,10 @@ namespace ContactApi.Controllers
 
         [HttpGet]
         [Route("tenants/companyIsUnique/{companyName}")]
-        public async Task<ActionResult<int>> GetCompanyName(string companyName)
+        public async Task<ActionResult<int>> GetCompanyNameCount(string companyName)
 
         {
-            if (companyName != null)
+            if (companyName != null && companyName != "" && companyName != " ")
             {
                 return Ok(await _tenantRepository.CountWhere(tenant=>tenant.CompanyName == companyName));
             }
@@ -95,7 +95,7 @@ namespace ContactApi.Controllers
         public async Task<ActionResult<TokenDTO>> GetTenantIdByCompanyName(string companyName)
 
         {
-            if (companyName != null)
+            if (companyName != null && companyName != "" && companyName != " ")
             {
                 var tenant = await _tenantRepository.FirstOrDefault(tenant=>tenant.CompanyName == companyName);
                 if (tenant == null)
@@ -117,10 +117,20 @@ namespace ContactApi.Controllers
         public async Task<ActionResult<int>> GetCountForEmailProvided(string email)
 
         {
-            if (email != null)
+            if (email != null && email.Length != 0 && email != " ")
             {
-                return await _userRepository.CountWhere(user=>user.Email == email);
-               
+                
+                int count  = await _userRepository.CountWhere(user=>user.Email == email);
+                if (count == 0)
+                {
+                    return Ok(count);
+                }
+                else
+                {
+                    return BadRequest("Email not available");
+                }
+
+
             }
             else
             {
@@ -142,7 +152,7 @@ namespace ContactApi.Controllers
         [Route("tenants/companyNameIsUnique/{companyName}")]
         public async Task<ActionResult> CompanyNameValidation(string companyName)
         {
-            if(companyName != null)
+            if(companyName != null && companyName != "" && companyName != " ")
             {
                 if(await _tenantRepository.FirstOrDefault(tenant=>tenant.CompanyName == companyName) == null)
                 {
@@ -180,6 +190,10 @@ namespace ContactApi.Controllers
         [Route("tenants/{tenantId}")]
         public async Task<ActionResult> PutTenant(string tenantId, [FromBody] TenantDTO tenantDTO)
         {
+            if(tenantId == null)
+            {
+                return BadRequest("Tenant id is invalid");
+            }
             if (_tenantRepository.GetById(Guid.Parse(tenantId)) == null)
             {
                 return BadRequest("Tenant id is not valid");
@@ -204,13 +218,21 @@ namespace ContactApi.Controllers
         [Route("tenants/{tenantId}")]
         public async Task<ActionResult> DeleteTenant(string tenantId)
         {
-            if (_tenantRepository.GetById(Guid.Parse(tenantId)) == null)
+            if(tenantId != null)
             {
-                return BadRequest("Tenant id is not valid");
+                if (_tenantRepository.GetById(Guid.Parse(tenantId)) == null)
+                {
+                    return NotFound("Tenant id is not valid");
+                }
+                Tenant tenantToDelete = await _tenantRepository.FirstOrDefault(tenant => tenant.Id == Guid.Parse(tenantId));
+                await _tenantRepository.Remove(tenantToDelete);
+                return Ok(new SuccessResponse{ Message = "User deleted successfully" });
             }
-            Tenant tenantToDelete = await _tenantRepository.FirstOrDefault(tenant => tenant.Id == Guid.Parse(tenantId));
-            await _tenantRepository.Remove(tenantToDelete);
-            return Ok("Tenant deleted Successfully");
+            else
+            {
+                return BadRequest("Please provide tenant id");
+            }
+            
 
         }
     }

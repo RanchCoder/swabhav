@@ -12,10 +12,13 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using ContactApi.Token;
 
+
 namespace ContactApi.Controllers
 {
     [Route("api/v1")]
     [ApiController]
+
+    [JwtAuthorization(Role = "Admin")]
     public class UserController : ControllerBase
     {
 
@@ -31,7 +34,6 @@ namespace ContactApi.Controllers
 
 
         [HttpGet]
-        [JwtAuthorization]
         [Route("tenants/{tenantId}/users")]
         
         
@@ -165,6 +167,33 @@ namespace ContactApi.Controllers
             }
 
             
+        }
+
+
+
+        [HttpPut]
+        [Route("tenants/{tenantId}/users/{userId}/favoriteUser")]
+        public async Task<ActionResult> AddUserToFavorite(string tenantId, string userId)
+        {
+            if (await _tenantRepository.GetById(Guid.Parse(tenantId)) == null)
+            {
+                return BadRequest("Tenant id is not valid");
+            }
+            User user = await _userRepository.GetById(Guid.Parse(userId));
+            if (user == null)
+            {
+                return BadRequest("User id is not valid");
+            }
+            else
+            {
+                user.Ratings = !user.Ratings;
+                await _userRepository.Update(user);
+                return Ok(new SuccessResponse { Message = "Successfully updated favorite user"});
+            }
+
+
+
+
         }
 
         [HttpDelete]

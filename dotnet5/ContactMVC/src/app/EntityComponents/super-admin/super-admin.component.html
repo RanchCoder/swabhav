@@ -1,0 +1,28 @@
+
+  <div class="container title-text">
+      <h5>Tenants information</h5>
+    
+    <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">Tenant Id</th>
+          <th scope="col">CompanyName</th>
+          <th scope="col">CompanyStrength</th>
+          
+          <th scope="col">Delete</th>
+          
+        </tr>
+        </thead>
+        <tbody>
+           <tr *ngFor="let tenant of tenantsData">
+               <td>{{tenant.id}}</td>
+               <td>{{tenant.companyName}}</td>
+               <td>{{tenant.companyStrength}}</td>
+               
+               <td><button class="btn btn-danger" (click)="deleteTenant(tenant.id)">delete</button></td>
+           </tr>
+        </tbody>
+      </table>
+    
+    </div>
+    

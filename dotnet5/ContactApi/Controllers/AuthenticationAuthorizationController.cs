@@ -22,13 +22,15 @@ namespace ContactApi.Controllers
     {
         private readonly IAsyncContactRepository<Tenant> _tenantRepository;
         private readonly IAsyncContactRepository<User> _userRepository;
+        private readonly IAsyncContactRepository<SuperAdmin> _superAdmin;
         private EncryptorDecryptor _encryptorDecryptor;
-
+        
         private ICustomTokenManager _customTokenManager;
-        public AuthenticationAuthorizationController(ICustomTokenManager customTokenManager, EncryptorDecryptor encryptorDecryptor,IAsyncContactRepository<Tenant> tenantRepository,IAsyncContactRepository<User> userRepository)
+        public AuthenticationAuthorizationController(ICustomTokenManager customTokenManager, EncryptorDecryptor encryptorDecryptor,IAsyncContactRepository<SuperAdmin> superAdmin,IAsyncContactRepository<Tenant> tenantRepository,IAsyncContactRepository<User> userRepository)
         {
             _customTokenManager = customTokenManager;
             _encryptorDecryptor = encryptorDecryptor;
+            _superAdmin = superAdmin;
             _tenantRepository = tenantRepository;
             _userRepository = userRepository;
         }
@@ -89,6 +91,30 @@ namespace ContactApi.Controllers
             }
         }
 
+        [Route("superAdminLogin")]
+        [HttpPost]
+        public async Task<ActionResult> PostLoginSuperAdmin([FromBody] SuperAdminLoginDTO superAdminLoginDTO)
+        {
+            if (ModelState.IsValid)
+            {
+                SuperAdmin userData = await _superAdmin.FirstOrDefault(user => user.Email == superAdminLoginDTO.Email && user.Password == superAdminLoginDTO.Password);
+                if (userData != null)
+                {
+                    string token = _customTokenManager.CreateSuperAdminToken(userData);
+                    return Ok(new { Token = token });
+                }
+                else
+                {
+                    
+                    return BadRequest("SuperAdmin credentials not valid");
+                }
+            }
+            else
+            {
+                return BadRequest("Please provide value for all fields");
+            }
+        }
+
         [Route("{tenantId}/user/login")]
         [HttpPost]
         public async Task<ActionResult> PostLoginUser(string tenantId, [FromBody] LoginDTO loginDTO)
@@ -101,23 +127,12 @@ namespace ContactApi.Controllers
 
             if (ModelState.IsValid)
             {
-                if (await _userRepository.FirstOrDefault(
-                    user => user.Email == loginDTO.Email 
-                    && user.Password == _encryptorDecryptor.Encrypt(loginDTO.Password)
-                    && user.TenantId == Guid.Parse(tenantId))
-                    != null
-                    )
-                {
-                    User userData =await _userRepository.FirstOrDefault(user=>user.TenantId == Guid.Parse(tenantId) && user.Email == loginDTO.Email);
-                    if (userData == null)
-                    {
-                        return BadRequest("User Account does not exists");
-                    }
+                User userData = await _userRepository.FirstOrDefault(user => user.TenantId == Guid.Parse(tenantId) && user.Email == loginDTO.Email && user.Password == _encryptorDecryptor.Encrypt(loginDTO.Password));
 
+                if (userData != null)
+                {                   
                     string token = _customTokenManager.CreateToken(userData);
                     return Ok(new { Token = token });
-
-
 
                 }
                 else

@@ -18,7 +18,7 @@ namespace ContactApp.Domain.Models
 
         public string Role { get; set; }
         
-        public string Token { get; set; }
+        public bool Ratings { get; set; }
         [JsonIgnore]
         public virtual Tenant Tenant { get; set; }
         public Guid TenantId { get; set; }

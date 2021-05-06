@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/contactapidbserver/databases/tenantUserContactAddress",
+      "type": "mssql.azure",
+      "connectionId": "ContactAddressDBContext",
+      "secretStore": "AzureAppSettings"
+    },
+    "apis1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.ApiManagement/service/ContactApi/apis/ContactApi",
+      "type": "apis.azure",
+      "apiEndpoint": "https://contactapi.azure-api.net/"
+    }
+  }
+}

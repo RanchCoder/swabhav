@@ -33,7 +33,7 @@ namespace ContactApi.Controllers
         
         [HttpGet]
         [Route("tenants/{tenantId}/users/{userId}/contacts")]
-        public async Task<ActionResult<List<Contact>>> GetUserContact(string tenantId, string userId)
+        public async Task<ActionResult<List<Contact>>> GetUserContacts(string tenantId, string userId)
         {
             if(_tenantRepository.GetById(Guid.Parse(tenantId)) == null)
             {
@@ -137,6 +137,35 @@ namespace ContactApi.Controllers
             }
 
         }
+
+        [HttpPut]
+        [Route("tenants/{tenantId}/users/{userId}/contacts/{contactId}/favoriteContact")]
+        public async Task<ActionResult> PutFavoriteContact(string tenantId, string userId, string contactId)
+        {
+            if (await _tenantRepository.GetById(Guid.Parse(tenantId)) == null)
+            {
+                return BadRequest("Tenant id is not valid");
+            }
+            if (await _userRepository.GetById(Guid.Parse(userId)) == null)
+            {
+                return BadRequest("User id is not valid");
+            }
+            Contact contact = await _contactRepository.GetById(Guid.Parse(contactId));
+            if (contact == null)
+            {
+                return BadRequest("contact id is not valid");
+            }
+            else
+            {
+                contact.Ratings = !contact.Ratings;
+                await _contactRepository.Update(contact);
+                return Ok(new SuccessResponse { Message = "Contact ratings updated successfully" });
+            }
+
+
+
+        }
+
 
         [HttpDelete]
         [Route("tenants/{tenantId}/users/{userId}/contacts/{contactId}")]

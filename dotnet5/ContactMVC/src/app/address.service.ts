@@ -12,7 +12,7 @@ export class AddressService {
    }
 
    readonly tenantId : any = localStorage.getItem('tenantId');
-   readonly ApiUrl = `http://localhost:58500/api/v1/tenants/${this.tenantId}/users`;
+   readonly ApiUrl = `https://tenantcontactmgmtapi.azurewebsites.net/api/v1/tenants/${this.tenantId}/users`;
 
    getAddressList(userId,contactId):Observable<Address[]>{
     return this.http.get<any>(this.ApiUrl+`/${userId}/contacts/${contactId}/addresses`);

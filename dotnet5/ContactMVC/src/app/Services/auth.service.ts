@@ -5,6 +5,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
 import { Login } from '../DTO/Login';
 import { Registration } from '../DTO/Registration';
+import { SuperAdminLoginDTO } from '../DTO/SuperAdminLogin';
 import { Tenant } from '../DTO/Tenant';
 import { UserToken } from '../DTO/UserToken';
 
@@ -15,7 +16,7 @@ export class AuthService {
 
   constructor(private http : HttpClient,private _router : Router,private jwtHelper : JwtHelperService) { }
 
-  readonly ApiUrl = `http://localhost:58500/api/v1/tenants`;
+  readonly ApiUrl = `https://tenantcontactmgmtapi.azurewebsites.net/api/v1/tenants`;
 
   validateCompanyName(companyName:any):Observable<any>{
     return this.http.get<any>(this.ApiUrl+`/companyIsUnique/${companyName}`);
@@ -46,6 +47,11 @@ export class AuthService {
     })});
   }
 
+  loginSuperAdmin(superAdminLoginFormData : SuperAdminLoginDTO){
+    const headers = {'content-type':'application/json'};
+    const body = JSON.stringify(superAdminLoginFormData);
+    return this.http.post(this.ApiUrl+`/superAdminLogin`,body,{'headers':headers});
+  }
    
   getUserId(loginData:Login):Observable<UserToken>{
     return this.http.get<any>(this.ApiUrl+`/${localStorage.getItem('tenantId')}/userIsUnique/userId`);
@@ -53,6 +59,10 @@ export class AuthService {
 
   fetchUserNameRole(tenantId,userId):Observable<any>{
     return this.http.get<any>(this.ApiUrl+`/${tenantId}/userNameAndRole/${userId}`);
+  }
+
+  superAdminLoggedIn(){
+    
   }
 
   loggedIn(){
@@ -100,9 +110,9 @@ export class AuthService {
   }
 
   getTenantNameFromToken(){
-    let token = localStorage.getItem("jwt");
-    let tokenPayLoad = this.jwtHelper.decodeToken(token);
-    return tokenPayLoad.tenantName;
+    return localStorage.getItem("companyName");
+    
+   
   }
 
   isLoggedOut(){

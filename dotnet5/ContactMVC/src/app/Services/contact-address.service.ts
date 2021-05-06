@@ -12,7 +12,7 @@ export class ContactAddressService {
     
   }
   readonly tenantId : any = localStorage.getItem('tenantId');
-  readonly ApiUrl = `http://localhost:58500/api/v1/tenants/${this.tenantId}/users`;
+  readonly ApiUrl = `https://contact-api.azurewebsites.net/api/v1/tenants/${this.tenantId}/users`;
  
   getContactList(userId:any):Observable<any[]>{
     return this.http.get<any>(this.ApiUrl+`/${userId}/contacts`);
@@ -47,6 +47,10 @@ export class ContactAddressService {
     return this.http.delete(this.ApiUrl+`/${userId}/contacts/${contactId}`,{'headers':headers,responseType: 'text' as 'json'});
   }
   
+  addContactToFavorite(userId:any,contactId:any):Observable<any>{
+    let headers = {'content-type':'application-json'};
+    return this.http.put(this.ApiUrl+`/${userId}/contacts/${contactId}/favoriteContact`,{'headers':headers});
+  }
 
   //  getNumbersApiData(numberInfo:any):Observable<string>{
   //   const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');

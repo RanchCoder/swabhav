@@ -1,4 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;800&family=Roboto+Condensed:wght@300;400&display=swap');
+
+body{
+  font-family: 'Inter', sans-serif;
+font-family: 'Roboto Condensed', sans-serif;
+color:#333;
+}
+a{
+  font-size:16px;
+}
+
+
+
+
 .page-title,.title-text>h3,.title-text>h5{
     margin-top:30px;
     text-align:center;
@@ -72,7 +86,7 @@ input.ng-pending{
     box-sizing: border-box;
     border-radius:10px;
     box-shadow:2px 3px 2px 2px rgba(0,0,0,0.1);
-    margin-bottom:20px;
+    margin:10px 20px;
     background-image:linear-gradient(220deg,pink,white,white,white);
 }
 
@@ -275,3 +289,8 @@ input.ng-pending{
       width: 25em;
     }
   }
+
+  .yellow{
+    color: yellow;
+}
+
